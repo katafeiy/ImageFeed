@@ -48,10 +48,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrW-uZ-Vmg" userLabel="Like Button">
-                                                    <rect key="frame" x="332" y="4" width="42" height="42"/>
+                                                    <rect key="frame" x="330" y="4" width="44" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="42" id="IDl-qw-saf"/>
-                                                        <constraint firstAttribute="width" constant="42" id="hXz-mW-UGW"/>
+                                                        <constraint firstAttribute="height" constant="44" id="IDl-qw-saf"/>
+                                                        <constraint firstAttribute="width" constant="44" id="hXz-mW-UGW"/>
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="offActive"/>
@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5266" y="492"/>
+            <point key="canvasLocation" x="-5386" y="357"/>
         </scene>
     </scenes>
     <resources>
