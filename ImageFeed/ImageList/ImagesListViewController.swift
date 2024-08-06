@@ -6,11 +6,13 @@ class ImagesListViewController: UIViewController {
     
     private let photosName: [String] = Array(0..<20).map{"\($0)"}
     
+    private lazy var todayDate = Date()
+    
     private lazy var dateFormatted: DateFormatter = {
         
         let formatted = DateFormatter()
-        formatted.dateStyle = .long
-        formatted.timeStyle = .none
+        formatted.locale = Locale(identifier: "ru_RU")
+        formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
         return formatted
         
     }()
@@ -71,8 +73,7 @@ extension ImagesListViewController {
         cell.gL.frame = cell.gradient.bounds
         cell.gradient.layer.addSublayer(cell.gL)
         
-        cell.dateLabel.text = dateFormatted.string(from: Date())
-        
+        cell.dateLabel.text = dateFormatted.string(from: Date()) + " " + todayDate.dateForImageFeed
         
     }
 }
@@ -92,5 +93,17 @@ extension ImagesListViewController: UITableViewDelegate {
         let imageCellHeight = image.size.height * half + imageSize.top + imageSize.bottom
         return imageCellHeight
     }
+}
+
+extension Date {
+    
+    var dateForImageFeed: String{
+        
+        let formatted = DateFormatter()
+        formatted.setLocalizedDateFormatFromTemplate("yyyy")
+        return formatted.string(from: self)
+        
+    }
+    
 }
 
