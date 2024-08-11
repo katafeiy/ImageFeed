@@ -25,7 +25,6 @@ class ImagesListViewController: UIViewController {
         
     }
     
-    
     @IBAction func clickLikeButton(_ sender: Any) {
         
     }
@@ -76,6 +75,14 @@ extension ImagesListViewController {
         cell.dateLabel.text = dateFormatted.string(from: Date()) + " " + todayDate.dateForImageFeed
         
     }
+    
+    func configProfile(for profile: ProfileViewController, with indexPath: IndexPath) {
+        
+        profile.photoView.layer.cornerRadius = 61
+        profile.photoView.layer.masksToBounds = true
+        
+    }
+    
 }
 
 extension ImagesListViewController: UITableViewDelegate {
