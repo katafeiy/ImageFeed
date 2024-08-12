@@ -26,7 +26,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j3w-0Z-6ji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-16137" y="-36"/>
+            <point key="canvasLocation" x="-16134" y="-6"/>
         </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
@@ -124,7 +124,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15322" y="-390"/>
+            <point key="canvasLocation" x="-15323" y="-360"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="d7y-Ie-WG6">
@@ -216,10 +216,10 @@
     <resources>
         <image name="0" width="1200" height="758"/>
         <image name="Exit" width="24" height="24"/>
-        <image name="filippovkv" width="333" height="325"/>
+        <image name="filippovkv" width="111" height="108.33333587646484"/>
         <image name="offActive" width="42" height="42"/>
         <image name="tabEditorialActive" width="30" height="30"/>
-        <image name="tabProfileActive" width="75" height="49"/>
+        <image name="tabProfileActive" width="25" height="16.333333969116211"/>
         <namedColor name="YP Black">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
