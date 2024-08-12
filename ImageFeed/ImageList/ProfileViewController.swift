@@ -14,8 +14,6 @@ class ProfileViewController {
 
     @IBAction func logOutButton(_ sender: Any) {
         
-        
-        
     }
     
 }
