@@ -15,6 +15,7 @@
 		127610602C5D07DE0003AB76 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1276105F2C5D07DE0003AB76 /* Base */; };
 		127610622C5D07DF0003AB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127610612C5D07DF0003AB76 /* Assets.xcassets */; };
 		127610652C5D07DF0003AB76 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 127610642C5D07DF0003AB76 /* Base */; };
+		12778C6A2C7092EC00F3E646 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12778C692C7092EC00F3E646 /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		127610612C5D07DF0003AB76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		127610642C5D07DF0003AB76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127610662C5D07DF0003AB76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12778C692C7092EC00F3E646 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				127610582C5D07DE0003AB76 /* AppDelegate.swift */,
 				1276105A2C5D07DE0003AB76 /* SceneDelegate.swift */,
+				12778C6B2C70A81100F3E646 /* Single Image View */,
 				126BA3C22C6A049F001D9CB8 /* Profile */,
 				1286C9D12C60304100DE4787 /* ImageList */,
 				1276105E2C5D07DE0003AB76 /* Main.storyboard */,
@@ -78,6 +81,14 @@
 				127610662C5D07DF0003AB76 /* Info.plist */,
 			);
 			path = ImageFeed;
+			sourceTree = "<group>";
+		};
+		12778C6B2C70A81100F3E646 /* Single Image View */ = {
+			isa = PBXGroup;
+			children = (
+				12778C692C7092EC00F3E646 /* SingleImageViewController.swift */,
+			);
+			path = "Single Image View";
 			sourceTree = "<group>";
 		};
 		1286C9D12C60304100DE4787 /* ImageList */ = {
@@ -164,6 +175,7 @@
 				123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */,
 				12615AF42C678F0F00D95997 /* ProfileViewController.swift in Sources */,
 				127610592C5D07DE0003AB76 /* AppDelegate.swift in Sources */,
+				12778C6A2C7092EC00F3E646 /* SingleImageViewController.swift in Sources */,
 				1276105B2C5D07DE0003AB76 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

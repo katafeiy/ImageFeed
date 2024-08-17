@@ -1,18 +1,25 @@
 import UIKit
 
-class ProfileViewController {
+final class ProfileViewController: UIViewController {
     
-    @IBOutlet private var photoView: UIImageView!
+    @IBOutlet var photoView: UIImageView!
+    @IBOutlet var exitButton: UIButton!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var messageLabel: UILabel!
     
-    @IBOutlet private var exitButton: UIButton!
+    @IBAction func logOutButton() {
+    }
     
-    @IBOutlet private var nameLabel: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configProfile()
+    }
     
-    @IBOutlet private var emailLabel: UILabel!
-    
-    @IBOutlet private var messageLabel: UILabel!
-
-    @IBAction private func logOutButton() {
+    func configProfile() {
+        
+        photoView.layer.cornerRadius = 36
+        photoView.layer.masksToBounds = true
         
     }
     
