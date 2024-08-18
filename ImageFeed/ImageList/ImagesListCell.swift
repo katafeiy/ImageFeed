@@ -8,9 +8,7 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet private var gradient: UIImageView!
     
     static let reuseIdentifier = "ImagesListCell"
-    
-    let gL = CAGradientLayer()
-    
+    private let gL = CAGradientLayer()
     private lazy var year = Date()
     
     private lazy var dateFormatted: DateFormatter = {
@@ -45,12 +43,11 @@ final class ImagesListCell: UITableViewCell {
 
 extension Date {
     
-    var dateForImageFeed: String{
+    var dateForImageFeed: String {
         
         let formatted = DateFormatter()
         formatted.setLocalizedDateFormatFromTemplate("yyyy")
         return formatted.string(from: self)
         
-    }
-    
+    }    
 }

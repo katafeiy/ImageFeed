@@ -10,6 +10,8 @@ class ImagesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         
     }
@@ -48,6 +50,7 @@ extension ImagesListViewController: UITableViewDataSource {
         }
         
         let likeOn = indexPath.row % 2 == 0
+        
         imageListCell.configCell(image: image, likeOn: likeOn)
         
         return imageListCell
