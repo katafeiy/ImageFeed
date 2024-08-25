@@ -159,48 +159,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fyn-lL-ASs">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Fyn-lL-ASs">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="VtU-3h-dEB">
                                         <rect key="frame" x="0.0" y="0.0" width="1200" height="758"/>
                                         <color key="backgroundColor" name="YP Black"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kef-3L-X9W">
-                                        <rect key="frame" x="275" y="701" width="51" height="51"/>
-                                        <color key="backgroundColor" name="YP Background"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="51" id="ZQh-ms-sIr"/>
-                                            <constraint firstAttribute="height" constant="51" id="mAh-KP-MqF"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="Sharing"/>
-                                        <connections>
-                                            <action selector="tapSharingButton:" destination="vjF-r9-c8n" eventType="touchUpInside" id="Mdy-1C-NB1"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="YP Background"/>
                                 <constraints>
-                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="leading" secondItem="L1h-mr-3NF" secondAttribute="leading" id="2Qr-PR-JgR"/>
-                                    <constraint firstItem="Kef-3L-X9W" firstAttribute="leading" secondItem="0mo-sX-USN" secondAttribute="leading" constant="275" id="8SO-g1-mDw"/>
-                                    <constraint firstItem="Kef-3L-X9W" firstAttribute="top" secondItem="0mo-sX-USN" secondAttribute="top" constant="701" id="AKb-9g-7dw"/>
-                                    <constraint firstItem="L1h-mr-3NF" firstAttribute="bottom" secondItem="VtU-3h-dEB" secondAttribute="bottom" id="FiO-P9-Sj7"/>
-                                    <constraint firstItem="L1h-mr-3NF" firstAttribute="trailing" secondItem="VtU-3h-dEB" secondAttribute="trailing" id="H3J-GU-zvY"/>
-                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="top" secondItem="L1h-mr-3NF" secondAttribute="top" id="il3-I5-k14"/>
+                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="bottom" secondItem="NDj-h0-tRB" secondAttribute="bottom" id="CU0-rs-v0o"/>
+                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="leading" secondItem="NDj-h0-tRB" secondAttribute="leading" id="DRt-3a-ayb"/>
+                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="trailing" secondItem="NDj-h0-tRB" secondAttribute="trailing" id="Px9-E8-etH"/>
+                                    <constraint firstItem="VtU-3h-dEB" firstAttribute="top" secondItem="NDj-h0-tRB" secondAttribute="top" id="jCQ-4H-MIL"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="L1h-mr-3NF"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="0mo-sX-USN"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="NDj-h0-tRB"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="l1e-qY-GTG"/>
                                 <connections>
                                     <outlet property="delegate" destination="vjF-r9-c8n" id="RVM-Zh-4lT"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcK-dR-0dV">
-                                <rect key="frame" x="9" y="53" width="24" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcK-dR-0dV" userLabel="Back Button">
+                                <rect key="frame" x="9" y="53" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="30M-Wb-Y5g"/>
+                                    <constraint firstAttribute="height" constant="44" id="MA7-pZ-Teu"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Backward"/>
                                 <connections>
                                     <action selector="backButton:" destination="vjF-r9-c8n" eventType="touchUpInside" id="Eft-r0-Twt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kef-3L-X9W">
+                                <rect key="frame" x="271" y="743" width="51" height="51"/>
+                                <color key="backgroundColor" name="YP Background"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="ZQh-ms-sIr"/>
+                                    <constraint firstAttribute="height" constant="51" id="mAh-KP-MqF"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Sharing"/>
+                                <connections>
+                                    <action selector="tapSharingButton:" destination="vjF-r9-c8n" eventType="touchUpInside" id="Mdy-1C-NB1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -208,11 +210,13 @@
                         <color key="backgroundColor" name="YP Background"/>
                         <constraints>
                             <constraint firstItem="ZcK-dR-0dV" firstAttribute="top" secondItem="ead-iM-2eh" secondAttribute="top" constant="53" id="52L-6o-0gp"/>
-                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottom" id="CYa-Us-3hy"/>
+                            <constraint firstItem="ead-iM-2eh" firstAttribute="trailing" secondItem="Kef-3L-X9W" secondAttribute="trailing" constant="68" id="7B6-VT-CNo"/>
+                            <constraint firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottom" id="CYa-Us-3hy"/>
+                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Kef-3L-X9W" secondAttribute="bottom" constant="50" id="MDL-1V-3J9"/>
                             <constraint firstItem="ZcK-dR-0dV" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" constant="9" id="PTE-M3-Qa1"/>
                             <constraint firstItem="ead-iM-2eh" firstAttribute="trailing" secondItem="Fyn-lL-ASs" secondAttribute="trailing" id="XYN-bg-BFf"/>
                             <constraint firstItem="Fyn-lL-ASs" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" id="lbd-Y6-0N2"/>
-                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="ead-iM-2eh" secondAttribute="top" id="q1N-hG-1tO"/>
+                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="xWZ-LO-5ZC" secondAttribute="top" id="q1N-hG-1tO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xh5-rq-WGF"/>
@@ -224,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gbp-on-mLM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17758" y="-326"/>
+            <point key="canvasLocation" x="-17758.461538461539" y="-326.30331753554503"/>
         </scene>
     </scenes>
     <resources>

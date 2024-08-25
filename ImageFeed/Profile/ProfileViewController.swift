@@ -3,9 +3,24 @@ import UIKit
 final class ProfileViewController: UIViewController {
     
     private var avatar = UIImageView()
+    private let photoAvatar = UIImage.filippovkv
+    
+    let logoutButton = UIButton.systemButton(
+        with: UIImage(systemName: "ipad.and.arrow.forward")!,
+        target: ProfileViewController.self,
+        action: #selector(Self.didTapLogoutButton))
+    
+    private let name = UILabel()
+    private let nickname = UILabel()
+    private var descriptionPerson = UILabel()
+    private let stackView = UIStackView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let viewArray = [avatar, logoutButton, name, nickname, descriptionPerson, stackView]
+        viewArray.forEach{$0.translatesAutoresizingMaskIntoConstraints = false}
         
         configAvatar()
         configButton()
@@ -15,9 +30,8 @@ final class ProfileViewController: UIViewController {
     
     private func configAvatar() {
         
-        let photoAvatar = UIImage.filippovkv
-        avatar  = UIImageView(image: photoAvatar)
-        avatar.translatesAutoresizingMaskIntoConstraints = false
+        avatar.image = photoAvatar
+        avatar.tintColor = .ypGray
         view.addSubview(avatar)
         
         NSLayoutConstraint.activate([
@@ -34,12 +48,6 @@ final class ProfileViewController: UIViewController {
     
     private func configButton() {
         
-        let logoutButton = UIButton.systemButton(
-            with: UIImage(systemName: "ipad.and.arrow.forward")!,
-            target: self,
-            action: #selector(Self.didTapLogoutButton))
-        
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
         logoutButton.tintColor = UIColor.red
         
@@ -54,29 +62,21 @@ final class ProfileViewController: UIViewController {
     
     private func configLabels() {
         
-        let name = UILabel()
-        name.translatesAutoresizingMaskIntoConstraints = false
         name.text = "Filippov Konstantin"
         name.textColor = UIColor.ypWhite
         name.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         name.heightAnchor.constraint(equalToConstant: 23).isActive = true
         
-        let nickname = UILabel()
-        nickname.translatesAutoresizingMaskIntoConstraints = false
         nickname.text = "@katafey"
         nickname.textColor = UIColor.ypGray
         nickname.font = UIFont.systemFont(ofSize: 13, weight: .bold)
         nickname.heightAnchor.constraint(equalToConstant: 18).isActive = true
         
-        let description = UILabel()
-        description.translatesAutoresizingMaskIntoConstraints = false
-        description.text = "Hello world!!!"
-        description.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-        description.textColor = UIColor.ypWhite
-        description.heightAnchor.constraint(greaterThanOrEqualToConstant: 18).isActive = true
+        descriptionPerson.text = "Hello world!!!"
+        descriptionPerson.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        descriptionPerson.textColor = UIColor.ypWhite
+        descriptionPerson.heightAnchor.constraint(greaterThanOrEqualToConstant: 18).isActive = true
         
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(stackView)
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.distribution = UIStackView.Distribution.equalSpacing
@@ -89,10 +89,8 @@ final class ProfileViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 120)
         ])
         
-        stackView.addArrangedSubview(name)
-        stackView.addArrangedSubview(nickname)
-        stackView.addArrangedSubview(description)
-        
+        [name, nickname, descriptionPerson].forEach({stackView.addArrangedSubview($0)})
+
     }
     
     @objc
