@@ -17,7 +17,8 @@ final class ImagesListCell: UITableViewCell {
         formatted.locale = Locale(identifier: "ru_RU")
         formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
         return formatted
-        
+
+    
     }()
     
     func configCell(image: UIImage, likeOn: Bool) {

@@ -1,6 +1,6 @@
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     
@@ -29,7 +29,7 @@ class ImagesListViewController: UIViewController {
             
             let image = UIImage(named: photosName[indexPath.row])
             viewController.image = image
-        }else{
+        } else {
             super.prepare(for: segue, sender: sender)
         }
     }
