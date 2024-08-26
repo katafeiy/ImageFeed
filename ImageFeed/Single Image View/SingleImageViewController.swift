@@ -34,15 +34,14 @@ class SingleImageViewController: UIViewController {
     }
     
     private func configView() {
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 1.25
         
         guard let image else { return }
         imageView.image = image
         imageView.frame.size = image.size
         rescaleAndCenterImageInScrollView(image: image)
-        
-        scrollView.delegate = self
-        scrollView.minimumZoomScale = 0.1
-        scrollView.maximumZoomScale = 1.25
         
         sharingButton.layer.cornerRadius = 25
         sharingButton.layer.masksToBounds = true

@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1212B4B12C7D11FC00E0AE46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127610632C5D07DF0003AB76 /* LaunchScreen.storyboard */; };
 		123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E4CE42C60372800D80884 /* ImagesListCell.swift */; };
 		12615AF42C678F0F00D95997 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12615AF32C678F0F00D95997 /* ProfileViewController.swift */; };
 		127610592C5D07DE0003AB76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127610582C5D07DE0003AB76 /* AppDelegate.swift */; };
 		1276105B2C5D07DE0003AB76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276105A2C5D07DE0003AB76 /* SceneDelegate.swift */; };
 		1276105D2C5D07DE0003AB76 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1276105C2C5D07DE0003AB76 /* ImagesListViewController.swift */; };
-		127610602C5D07DE0003AB76 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1276105F2C5D07DE0003AB76 /* Base */; };
 		127610622C5D07DF0003AB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127610612C5D07DF0003AB76 /* Assets.xcassets */; };
-		127610652C5D07DF0003AB76 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 127610642C5D07DF0003AB76 /* Base */; };
 		12778C6A2C7092EC00F3E646 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12778C692C7092EC00F3E646 /* SingleImageViewController.swift */; };
+		129837AF2C7D138E00C34492 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1276105E2C5D07DE0003AB76 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,9 +158,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1212B4B12C7D11FC00E0AE46 /* LaunchScreen.storyboard in Resources */,
 				127610622C5D07DF0003AB76 /* Assets.xcassets in Resources */,
-				127610652C5D07DF0003AB76 /* Base in Resources */,
-				127610602C5D07DE0003AB76 /* Base in Resources */,
+				129837AF2C7D138E00C34492 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

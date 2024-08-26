@@ -31,7 +31,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j3w-0Z-6ji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-19591" y="2"/>
+            <point key="canvasLocation" x="-19631" y="3"/>
         </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
@@ -155,7 +155,7 @@
         <scene sceneID="92e-T4-key">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="vjF-r9-c8n" customClass="SingleImageViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xWZ-LO-5ZC">
+                    <view key="view" contentMode="scaleAspectFit" id="xWZ-LO-5ZC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -205,13 +205,13 @@
                         <color key="backgroundColor" name="YP Background"/>
                         <constraints>
                             <constraint firstItem="ZcK-dR-0dV" firstAttribute="top" secondItem="xWZ-LO-5ZC" secondAttribute="top" constant="55" id="52L-6o-0gp"/>
-                            <constraint firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottom" id="CYa-Us-3hy"/>
+                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottom" id="CYa-Us-3hy"/>
                             <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Kef-3L-X9W" secondAttribute="bottom" constant="50" id="MDL-1V-3J9"/>
                             <constraint firstItem="ZcK-dR-0dV" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" constant="9" id="PTE-M3-Qa1"/>
                             <constraint firstItem="Kef-3L-X9W" firstAttribute="centerX" secondItem="ead-iM-2eh" secondAttribute="centerX" id="UNK-4g-78b"/>
                             <constraint firstItem="ead-iM-2eh" firstAttribute="trailing" secondItem="Fyn-lL-ASs" secondAttribute="trailing" id="XYN-bg-BFf"/>
                             <constraint firstItem="Fyn-lL-ASs" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" id="lbd-Y6-0N2"/>
-                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="xWZ-LO-5ZC" secondAttribute="top" id="q1N-hG-1tO"/>
+                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="ead-iM-2eh" secondAttribute="top" id="q1N-hG-1tO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xh5-rq-WGF"/>
