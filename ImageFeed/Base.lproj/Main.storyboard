@@ -176,10 +176,10 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcK-dR-0dV" userLabel="Back Button">
-                                <rect key="frame" x="9" y="55" width="44" height="44"/>
+                                <rect key="frame" x="8" y="8" width="48" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="30M-Wb-Y5g"/>
-                                    <constraint firstAttribute="height" constant="44" id="MA7-pZ-Teu"/>
+                                    <constraint firstAttribute="width" constant="48" id="30M-Wb-Y5g"/>
+                                    <constraint firstAttribute="height" constant="48" id="MA7-pZ-Teu"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Backward"/>
@@ -188,7 +188,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kef-3L-X9W">
-                                <rect key="frame" x="170" y="744" width="50" height="50"/>
+                                <rect key="frame" x="170" y="777" width="50" height="50"/>
                                 <color key="backgroundColor" name="YP Background"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="ZQh-ms-sIr"/>
@@ -204,14 +204,14 @@
                         <viewLayoutGuide key="safeArea" id="ead-iM-2eh"/>
                         <color key="backgroundColor" name="YP Background"/>
                         <constraints>
-                            <constraint firstItem="ZcK-dR-0dV" firstAttribute="top" secondItem="xWZ-LO-5ZC" secondAttribute="top" constant="55" id="52L-6o-0gp"/>
-                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottom" id="CYa-Us-3hy"/>
-                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Kef-3L-X9W" secondAttribute="bottom" constant="50" id="MDL-1V-3J9"/>
-                            <constraint firstItem="ZcK-dR-0dV" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" constant="9" id="PTE-M3-Qa1"/>
+                            <constraint firstItem="ZcK-dR-0dV" firstAttribute="top" secondItem="ead-iM-2eh" secondAttribute="top" constant="8" id="52L-6o-0gp"/>
+                            <constraint firstAttribute="bottom" secondItem="Fyn-lL-ASs" secondAttribute="bottomMargin" constant="8" id="CYa-Us-3hy"/>
+                            <constraint firstItem="ead-iM-2eh" firstAttribute="bottom" secondItem="Kef-3L-X9W" secondAttribute="bottom" constant="17" id="MDL-1V-3J9"/>
+                            <constraint firstItem="ZcK-dR-0dV" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" constant="8" id="PTE-M3-Qa1"/>
                             <constraint firstItem="Kef-3L-X9W" firstAttribute="centerX" secondItem="ead-iM-2eh" secondAttribute="centerX" id="UNK-4g-78b"/>
                             <constraint firstItem="ead-iM-2eh" firstAttribute="trailing" secondItem="Fyn-lL-ASs" secondAttribute="trailing" id="XYN-bg-BFf"/>
                             <constraint firstItem="Fyn-lL-ASs" firstAttribute="leading" secondItem="ead-iM-2eh" secondAttribute="leading" id="lbd-Y6-0N2"/>
-                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="ead-iM-2eh" secondAttribute="top" id="q1N-hG-1tO"/>
+                            <constraint firstItem="Fyn-lL-ASs" firstAttribute="top" secondItem="xWZ-LO-5ZC" secondAttribute="top" id="q1N-hG-1tO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xh5-rq-WGF"/>
