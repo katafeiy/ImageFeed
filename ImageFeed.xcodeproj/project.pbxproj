@@ -16,6 +16,7 @@
 		127610622C5D07DF0003AB76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127610612C5D07DF0003AB76 /* Assets.xcassets */; };
 		12778C6A2C7092EC00F3E646 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12778C692C7092EC00F3E646 /* SingleImageViewController.swift */; };
 		129837AF2C7D138E00C34492 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1276105E2C5D07DE0003AB76 /* Main.storyboard */; };
+		1298D70B2C80503A00272702 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298D70A2C80503A00272702 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		127610642C5D07DF0003AB76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127610662C5D07DF0003AB76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12778C692C7092EC00F3E646 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		1298D70A2C80503A00272702 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				127610582C5D07DE0003AB76 /* AppDelegate.swift */,
 				1276105A2C5D07DE0003AB76 /* SceneDelegate.swift */,
+				1298D70A2C80503A00272702 /* Constants.swift */,
 				12778C6B2C70A81100F3E646 /* Single Image View */,
 				126BA3C22C6A049F001D9CB8 /* Profile */,
 				1286C9D12C60304100DE4787 /* ImageList */,
@@ -175,6 +178,7 @@
 				123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */,
 				12615AF42C678F0F00D95997 /* ProfileViewController.swift in Sources */,
 				127610592C5D07DE0003AB76 /* AppDelegate.swift in Sources */,
+				1298D70B2C80503A00272702 /* Constants.swift in Sources */,
 				12778C6A2C7092EC00F3E646 /* SingleImageViewController.swift in Sources */,
 				1276105B2C5D07DE0003AB76 /* SceneDelegate.swift in Sources */,
 			);
