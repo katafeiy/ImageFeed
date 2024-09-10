@@ -233,12 +233,18 @@
                                     <action selector="tapBackButton:" destination="d1a-Wm-5Vi" eventType="touchUpInside" id="8SL-wp-ys6"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jSP-bA-Pr3">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="89o-pM-9lR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jSP-bA-Pr3" firstAttribute="top" secondItem="89o-pM-9lR" secondAttribute="top" id="AEx-6J-LmM"/>
                             <constraint firstItem="d4Y-C9-XL2" firstAttribute="leading" secondItem="MYN-T4-Zwn" secondAttribute="leadingMargin" id="E1h-js-Tdc"/>
                             <constraint firstItem="djD-WO-ATd" firstAttribute="top" secondItem="89o-pM-9lR" secondAttribute="top" constant="9" id="I7Q-Yv-oak"/>
+                            <constraint firstItem="89o-pM-9lR" firstAttribute="trailing" secondItem="jSP-bA-Pr3" secondAttribute="trailing" id="IHy-HH-R4f"/>
+                            <constraint firstItem="jSP-bA-Pr3" firstAttribute="leading" secondItem="89o-pM-9lR" secondAttribute="leading" id="QZK-3q-KbJ"/>
                             <constraint firstItem="d4Y-C9-XL2" firstAttribute="bottom" secondItem="MYN-T4-Zwn" secondAttribute="bottom" id="atb-Tf-4mn"/>
                             <constraint firstItem="djD-WO-ATd" firstAttribute="leading" secondItem="89o-pM-9lR" secondAttribute="leading" constant="9" id="oWE-6d-acJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d4Y-C9-XL2" secondAttribute="trailing" id="qVq-9e-hDo"/>
@@ -248,6 +254,7 @@
                     <navigationItem key="navigationItem" id="hVV-Fp-sGL"/>
                     <connections>
                         <outlet property="backButton" destination="djD-WO-ATd" id="c3W-Y5-TfI"/>
+                        <outlet property="progressView" destination="jSP-bA-Pr3" id="LBh-Ik-s4N"/>
                         <outlet property="webView" destination="d4Y-C9-XL2" id="uO3-L6-nXZ"/>
                     </connections>
                 </viewController>
