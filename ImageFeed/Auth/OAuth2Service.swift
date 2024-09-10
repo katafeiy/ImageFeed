@@ -30,13 +30,12 @@ final class OAuth2Service {
         return request
     }
     
-    func fetchOAuthToken(code: String, completion: @escaping (Swift.Result<String, Error>) -> Void) {
+    func fetchOAuthToken(code: String, completion: @escaping (Result<String, Error>) -> Void) {
         
         let request = loadOAuth2ServiceToken(code: code)
         
-        let task = URLSession.shared.data(for: request) { [weak self] result in
+        let task = URLSession.shared.data(for: request) { result in
             
-            guard let self = self else {return}
             print("3: urlsession")
             
             switch result {
