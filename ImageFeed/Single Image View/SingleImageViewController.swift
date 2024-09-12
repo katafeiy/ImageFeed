@@ -34,6 +34,7 @@ class SingleImageViewController: UIViewController {
     }
     
     private func configView() {
+        
         scrollView.delegate = self
         scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 1.25
