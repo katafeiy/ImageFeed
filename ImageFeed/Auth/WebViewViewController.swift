@@ -84,7 +84,7 @@ final class WebViewViewController: UIViewController {
         
     }
     
-    @IBAction func tapBackButton(_ sender: Any) {
+    @IBAction private func tapBackButton(_ sender: Any) {
         
         guard let delegate else { return }
         delegate.webViewViewControllerDidCancel(self)

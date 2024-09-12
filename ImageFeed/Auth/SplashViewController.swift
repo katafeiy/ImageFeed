@@ -1,6 +1,6 @@
 import UIKit
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
     
     private let showAuthViewControllerSegueIdentifier = "showAuthViewController"
     private let oauth2Service = OAuth2Service.shared
@@ -31,7 +31,8 @@ class SplashViewController: UIViewController {
     
     private func switchToBarController() {
         guard let window = UIApplication.shared.windows.first else {
-            fatalError("Invalid window configuration")
+            assertionFailure("Invalid window configuration")
+            return
         }
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
@@ -49,7 +50,8 @@ extension SplashViewController: AuthViewControllerDelegate {
                 let navigationController = segue.destination as? UINavigationController,
                 let viewController = navigationController.viewControllers.first as? AuthViewController
             else {
-                fatalError("Failed to prepare for \(showAuthViewControllerSegueIdentifier)")
+                assertionFailure("Failed to prepare for \(showAuthViewControllerSegueIdentifier)")
+                return
             }
             
             viewController.setDelegate(self)

@@ -1,7 +1,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-    // ViewController -> chaild Presenter
+
     private let presenter = ProfileViewPresenter()
     
     private let avatarAccountImage: UIImageView = {
@@ -94,17 +94,15 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-
 extension ProfileViewController: ProfileViewPresenterProtocol {
     func goToAuthViewController() {
         guard let window = UIApplication.shared.windows.first else {
-            fatalError("Invalid window configuration")
+            assertionFailure("Invalid window configuration")
+            return
         }
-        
         let viewController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "SplashViewController")
         window.rootViewController = viewController
-//        window.makeKeyAndVisible()
     }
     
     func showAlert() {
@@ -113,8 +111,8 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
                                       preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Ok",
-                                   style: .default) { _ in
-            
+                                   style: .default) { [weak self] _ in
+            guard let self else { return }
             self.presenter.logout()
             
         }

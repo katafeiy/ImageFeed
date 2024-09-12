@@ -5,13 +5,12 @@ protocol ProfileViewPresenterProtocol: AnyObject {
     func goToAuthViewController()
 }
 
-class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -> showAlert()
+final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -> showAlert()
     weak var delegate: ProfileViewPresenterProtocol?
    
 
     func didSelectLogoutButton() {
         delegate?.showAlert()
-        
     }
     
     func logout() {

@@ -10,12 +10,10 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
     }
     
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
-        
     }
     
     func setDelegate(_ delegate: AuthViewControllerDelegate ) {
@@ -25,15 +23,11 @@ final class AuthViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == showWebView {
-            
             guard let webView = segue.destination as? WebViewViewController
                     
-            else {
-                
+            else { 
                 assertionFailure("Invalid segue destination")
-                return
-            }
-            
+                return }
             webView.setDelegate(self)
         }
     }
@@ -47,14 +41,12 @@ final class AuthViewController: UIViewController {
             guard let self = self else { return }
             
             switch result {
-                
             case .success(let token):
                 
                 OAuth2TokenStorage.token = token
                 delegate?.didAuthenticate(self, didAuthenticateWithCode: code)
                 
             case .failure(let error):
-                
                 print("Ошибка чтения токена: \(error) ")
             }
         }
@@ -66,7 +58,6 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
-    
 }
 
 protocol AuthViewControllerProtocol {

@@ -13,9 +13,10 @@ final class OAuth2TokenStorage {
     }
 }
 
-protocol OAuth2TokenStorageProtocol {
-    var token: String { get set }
-}
+//protocol OAuth2TokenStorageProtocol {
+//    var token: String { get set }
+//}
+
 
 
 
