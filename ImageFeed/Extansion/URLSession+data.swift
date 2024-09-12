@@ -8,9 +8,9 @@ enum NetworkError: Error {
 
 extension URLSession {
     
-    func data(for request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) -> URLSessionTask {
+    func data(for request: URLRequest, completion: @escaping Closure.ClosureResultDataError) -> URLSessionTask {
         print("1: data")
-        let fullCompletionOnTheMainTread: (Result<Data, Error>) -> Void = { result in
+        let fullCompletionOnTheMainTread: Closure.ClosureResultDataError = { result in
             DispatchQueue.main.async {
                 completion(result)
             }

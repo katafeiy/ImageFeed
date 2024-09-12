@@ -1,6 +1,8 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
+    // ViewController -> chaild Presenter
+    private let presenter = ProfileViewPresenter()
     
     private let avatarAccountImage: UIImageView = {
         let image = UIImageView()
@@ -12,11 +14,11 @@ final class ProfileViewController: UIViewController {
         return image
     }()
     
-    private let logoutAccountButton: UIButton = {
+    private lazy var logoutAccountButton: UIButton = {
         let button = UIButton.systemButton(
             with: .init(systemName: "ipad.and.arrow.forward")!,
-            target: ProfileViewController.self,
-            action: #selector(Self.didTapLogoutButton))
+            target: self,
+            action: #selector(didTapLogoutButton))
         button.tintColor = .ypRed
         return button
     }()
@@ -56,10 +58,10 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.delegate = self
         configurationViews()
-        
     }
+
     
     private func configurationViews() {
         
@@ -87,6 +89,45 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc
-    private func didTapLogoutButton() {}
-    
+    private func didTapLogoutButton() {
+        presenter.didSelectLogoutButton()
+    }
 }
+
+
+extension ProfileViewController: ProfileViewPresenterProtocol {
+    func goToAuthViewController() {
+        guard let window = UIApplication.shared.windows.first else {
+            fatalError("Invalid window configuration")
+        }
+        
+        let viewController = UIStoryboard(name: "Main", bundle: .main)
+            .instantiateViewController(withIdentifier: "SplashViewController")
+        window.rootViewController = viewController
+//        window.makeKeyAndVisible()
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Выход",
+                                      message: "Хотите выйти?",
+                                      preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Ok",
+                                   style: .default) { _ in
+            
+            self.presenter.logout()
+            
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel",
+                                   style: .cancel) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true)
+    }
+}
+

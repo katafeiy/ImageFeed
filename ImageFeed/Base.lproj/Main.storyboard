@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RRg-fa-efL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dPC-37-h1O">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,10 +10,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="fhT-ac-jMb">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dPC-37-h1O" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0La-Ic-mOV">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Kp1-OK-BY7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="RRg-fa-efL" kind="presentation" identifier="showAuthViewController" id="nlS-gN-cPy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Lr-TP-8dG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-19975" y="-484"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NHi-LG-0dm">
             <objects>
-                <tabBarController id="x8Q-Xi-elR" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="x8Q-Xi-elR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="v9R-5K-vAA"/>
                     <tabBar key="tabBar" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="laE-RJ-wZc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -155,7 +174,7 @@
         <!--Auth View Controller-->
         <scene sceneID="5Db-2a-le9">
             <objects>
-                <viewController id="RTh-tJ-uix" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="RTh-tJ-uix" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jSI-Wy-Zkp">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,7 +187,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrd-Bb-kIo">
-                                <rect key="frame" x="16" y="672" width="358" height="48"/>
+                                <rect key="frame" x="16" y="706" width="358" height="48"/>
                                 <color key="backgroundColor" name="YP White"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Hcv-da-rJU"/>
@@ -203,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCb-Yt-bSc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20440" y="2.8436018957345972"/>
+            <point key="canvasLocation" x="-17703" y="-1027"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="uzH-iK-oqI">
@@ -260,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2m-NI-pBY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-19580" y="2.8436018957345972"/>
+            <point key="canvasLocation" x="-16754" y="-1027"/>
         </scene>
         <!--Single Image View Controller-->
         <scene sceneID="92e-T4-key">
@@ -339,20 +358,21 @@
         <!--Navigation Controller-->
         <scene sceneID="SPs-Ft-uGh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RRg-fa-efL" sceneMemberID="viewController">
+                <navigationController wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="RRg-fa-efL" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="6AU-DU-EDw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tw5-mL-QNE">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="RTh-tJ-uix" kind="relationship" relationship="rootViewController" id="P7k-hj-fk0"/>
+                        <segue destination="RTh-tJ-uix" kind="relationship" relationship="rootViewController" id="rBP-iI-PYL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Diy-VB-pJ3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-21323" y="3"/>
+            <point key="canvasLocation" x="-18917" y="-1027"/>
         </scene>
     </scenes>
     <resources>
