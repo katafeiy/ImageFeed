@@ -5,6 +5,7 @@ final class SplashViewController: UIViewController {
     private let showAuthViewControllerSegueIdentifier = "showAuthViewController"
     private let oauth2Service = OAuth2Service.shared
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
@@ -14,6 +15,7 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
+            fetchProfile(token)
             self.switchToBarController()
         } else {
             performSegue(withIdentifier: showAuthViewControllerSegueIdentifier, sender: nil)
@@ -63,11 +65,32 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     func didAuthenticate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true) { [weak self] in
-            guard let self = self else { return }
+            guard let self = self, let token = OAuth2TokenStorage.token else { return }
+            
+            fetchProfile(token)
+            
+            UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
+            
         }
     }
     
+    private func fetchProfile(_ token: String) {
+        
+        UIBlockingProgressHUD.show()
+        ProfileService.shared.fetchProfile(token) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
+            
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self.switchToBarController()
+            case .failure:
+                break
+            }
+        }
+    }
+
     private func fetchOAuthToken(_ code: String) {
         oauth2Service.fetchOAuthToken(code: code) { [weak self] result in
             guard let self = self else {return}
@@ -75,6 +98,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .success:
                 self.switchToBarController()
             case .failure:
+                UIBlockingProgressHUD.dismiss()
                 break
             }
         }

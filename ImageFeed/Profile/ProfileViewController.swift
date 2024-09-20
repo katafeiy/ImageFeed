@@ -58,10 +58,28 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter.delegate = self
         configurationViews()
+        loadProfile()
+
     }
 
+    private func loadProfile() {
+    
+        guard let token = OAuth2TokenStorage.token else { return }
+        ProfileService.shared.fetchProfile(token) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let profile):
+                nameAccountLabel.text = profile.name
+                nicknameAccountLabel.text = profile.loginName
+                descriptionAccountLabel.text = profile.bio
+            case .failure(let error):
+                print("Ошибка чтения файла профиля \(error)")
+            }
+        }
+    }
     
     private func configurationViews() {
         

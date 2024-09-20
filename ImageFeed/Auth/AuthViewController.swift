@@ -50,7 +50,7 @@ final class AuthViewController: UIViewController {
                 delegate?.didAuthenticate(self, didAuthenticateWithCode: code)
                 
             case .failure(let error):
-                print("Ошибка чтения токена: \(error) ")
+                print("Ошибка чтения токена: \(error)")
             }
         }
     }
@@ -61,6 +61,7 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
+    
 }
 
 protocol AuthViewControllerDelegate: AnyObject {
