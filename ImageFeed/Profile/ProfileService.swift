@@ -12,7 +12,6 @@ struct ProfileResult: Codable {
         case lastName = "last_name"
         case bio = "bio"
     }
-    
 }
 
 struct Profile {
@@ -50,24 +49,20 @@ final class ProfileService {
         
         guard let request = loadProfileRequest(token) else { return }
         
-        let task = URLSession.shared.data(for: request) { [weak self] result in
-            guard let self = self else { return }
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error> ) in
+            
+            guard let self else { return }
+            
             switch result {
-            case .success(let data):
-                do {
-                    let profileResult = try JSONDecoder().decode(ProfileResult.self, from: data)
-                    self.profile = Profile(userName: ("\(profileResult.userName ?? "")"),
-                                           fullName: ("\(profileResult.firstName ?? "")"+" "+"\(profileResult.lastName ?? "")"),
-                                           loginName: ("@\(profileResult.userName ?? "")"),
-                                           bio: ("\(profileResult.bio ?? "")"))
-                    
-                    completion(.success(self.profile!))
-                } catch {
-                    completion(.failure(error))
-                }
+                case .success(let profileResult):
+                self.profile = Profile(userName: ("\(profileResult.userName ?? "")"),
+                                       fullName: ("\(profileResult.firstName ?? "")"+" "+"\(profileResult.lastName ?? "")"),
+                                       loginName: ("@\(profileResult.userName ?? "")"),
+                                       bio: ("\(profileResult.bio ?? "")"))
             case .failure(let error):
-                completion(.failure(error))
+                print("Incorrect profile: \(error.localizedDescription)")
             }
+            self.task = nil
         }
         self.task = task
         task.resume()

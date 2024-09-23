@@ -64,9 +64,8 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     func didAuthenticate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true) { [weak self] in
-            guard let self = self, let token = OAuth2TokenStorage.token else { return }
+            guard let self = self else { return }
             
-            fetchProfile(token)
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
             
@@ -75,22 +74,23 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func fetchProfile(_ token: String) {
         
-        UIBlockingProgressHUD.show()
         ProfileService.shared.fetchProfile(token) { [weak self] result in
-            UIBlockingProgressHUD.dismiss()
-            
-            guard let self = self else { return }
+            guard let self else { return }
             switch result {
             case .success:
                 self.switchToBarController()
+                
             case .failure:
                 break
             }
+            UIBlockingProgressHUD.dismiss()
         }
         
-        guard let profile = ProfileService.shared.profile, let username = profile.userName else { return }
+    }
+    
+    private func fetchProfileImageURL(_ token: String, _ username: String) {
         
-        ProfileImageService.shared.fetchProfileImageURL(token, username: username) { result in
+        ProfileImageService.shared.fetchProfileImageURL(token, username) { result in
             
         }
     }
@@ -99,12 +99,13 @@ extension SplashViewController: AuthViewControllerDelegate {
         oAuth2Service.fetchOAuthToken(code: code) { [weak self] result in
             guard let self = self else {return}
             switch result {
-            case .success:
+            case .success (let token):
+                fetchProfile(token)
                 self.switchToBarController()
-            case .failure:
-                UIBlockingProgressHUD.dismiss()
-                break
+            case .failure (let error):
+                print("Incorrect token: \(error.localizedDescription)")
             }
+            UIBlockingProgressHUD.dismiss()
         }
     }
 }

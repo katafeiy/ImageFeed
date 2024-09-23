@@ -22,7 +22,7 @@ final class ProfileImageService {
         }
     }
     
-    private func loadProfileImageRequest(_ token: String?, username: String?) -> URLRequest? {
+    private func loadProfileImageRequest(_ token: String?, _ username: String?) -> URLRequest? {
         
         guard
             let url = Constants.defaultBaseURL,
@@ -39,9 +39,9 @@ final class ProfileImageService {
         return request
     }
     
-    func fetchProfileImageURL(_ token: String, username: String, _ completion: @escaping Closure.ClosureResultStringError) {
+    func fetchProfileImageURL(_ token: String, _ username: String, _ completion: @escaping Closure.ClosureResultStringError) {
         
-        guard let request = loadProfileImageRequest(token, username: username) else { return }
+        guard let request = loadProfileImageRequest(token, username) else { return }
         
         let task = URLSession.shared.data(for: request) { [weak self] result in
             guard let self else { return }

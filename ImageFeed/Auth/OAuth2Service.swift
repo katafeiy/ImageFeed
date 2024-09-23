@@ -1,18 +1,18 @@
 import UIKit
 
 final class OAuth2Service {
-
+    
     static let shared = OAuth2Service()
     
     
     private var task: URLSessionTask?
     private var lastCode: String?
-
+    
     private init() {}
- 
+    
     private func loadOAuth2ServiceToken(code: String) -> URLRequest? {
         
-        guard var urlComponent = URLComponents(string: OAuth2ServiceConstants.unsplashTokenURLString)
+        guard var urlComponent = URLComponents(string: OAuth2ServiceConstants.unSplashTokenURLString)
         else {
             preconditionFailure("Incorrect URL")
         }
@@ -52,31 +52,48 @@ final class OAuth2Service {
             completion(.failure(AuthServiceError.invalidRequest))
             return
         }
-    
-        let task = URLSession.shared.data(for: request) { result in
-    
+        
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+            guard let self else { return }
             switch result {
-            case .success(let data):
-                do {
-                    let authToken = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-                    guard let authToken = authToken.accessToken else { return }
-                    completion(.success(authToken))
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success(let authToken):
+                guard let authToken = authToken.accessToken else { return }
+                OAuth2TokenStorage.token = authToken
+                completion(.success(authToken))
             case .failure(let error):
                 completion(.failure(error))
+                print("Incorrect token response: \(error.localizedDescription)")
                 self.lastCode = nil
             }
-            self.task = nil
         }
-        self.task = task
+        self.task = nil
         task.resume()
+        
+        
+        //        let task = URLSession.shared.data(for: request) { result in
+        //
+        //            switch result {
+        //            case .success(let data):
+        //                do {
+        //                    let authToken = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
+        //                    guard let authToken = authToken.accessToken else { return }
+        //                    completion(.success(authToken))
+        //                } catch {
+        //                    completion(.failure(error))
+        //                }
+        //            case .failure(let error):
+        //                completion(.failure(error))
+        //                self.lastCode = nil
+        //            }
+        //            self.task = nil
+        //        }
+        //        self.task = task
+        //        task.resume()
     }
 }
 
 enum OAuth2ServiceConstants {
-    static let unsplashTokenURLString = "https://unsplash.com/oauth/token"
+    static let unSplashTokenURLString = "https://unsplash.com/oauth/token"
 }
 
 enum AuthServiceError: Error {

@@ -95,22 +95,6 @@ final class ProfileViewController: UIViewController {
         
     }
     
-    //    private func loadProfile() {
-    //
-    //        guard let token = OAuth2TokenStorage.token else { return }
-    //        ProfileService.shared.fetchProfile(token) { [weak self] result in
-    //            guard let self else { return }
-    //            switch result {
-    //            case .success(let profile):
-    //                nameAccountLabel.text = profile.fullName
-    //                nicknameAccountLabel.text = profile.loginName
-    //                descriptionAccountLabel.text = profile.bio
-    //            case .failure(let error):
-    //                print("Ошибка чтения файла профиля \(error)")
-    //            }
-    //        }
-    //    }
-    
     private func configurationViews() {
         
         [avatarAccountImage, logoutAccountButton, self.stackView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false; view.addSubview($0)}
