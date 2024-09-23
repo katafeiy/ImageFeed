@@ -16,8 +16,8 @@ struct ProfileResult: Codable {
 }
 
 struct Profile {
-    let username: String?
-    let name: String?
+    let userName: String?
+    let fullName: String?
     let loginName: String?
     let bio: String?
 }
@@ -32,12 +32,12 @@ final class ProfileService {
         
         guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
         
-        var request = URLRequest.makeHTTPRequest(
+        var request = URLRequest.setHTTPRequest(
             path: "/me",
             httpMethod: "GET",
             url: url)
         
-        guard let token else { preconditionFailure("Incorrect Token")}
+        guard let token else { preconditionFailure("Incorrect Token") }
     
         request?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
@@ -56,8 +56,8 @@ final class ProfileService {
             case .success(let data):
                 do {
                     let profileResult = try JSONDecoder().decode(ProfileResult.self, from: data)
-                    self.profile = Profile(username: ("\(profileResult.userName ?? "")"),
-                                           name: ("\(profileResult.firstName ?? "")"+" "+"\(profileResult.lastName ?? "")"),
+                    self.profile = Profile(userName: ("\(profileResult.userName ?? "")"),
+                                           fullName: ("\(profileResult.firstName ?? "")"+" "+"\(profileResult.lastName ?? "")"),
                                            loginName: ("@\(profileResult.userName ?? "")"),
                                            bio: ("\(profileResult.bio ?? "")"))
                     

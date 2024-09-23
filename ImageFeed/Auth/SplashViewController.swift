@@ -3,7 +3,7 @@ import UIKit
 final class SplashViewController: UIViewController {
     
     private let showAuthViewControllerSegueIdentifier = "showAuthViewController"
-    private let oauth2Service = OAuth2Service.shared
+    private let oAuth2Service = OAuth2Service.shared
     
     
     override func viewDidLoad() {
@@ -13,7 +13,6 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
             fetchProfile(token)
             self.switchToBarController()
@@ -68,7 +67,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self, let token = OAuth2TokenStorage.token else { return }
             
             fetchProfile(token)
-            
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
             
@@ -89,10 +87,16 @@ extension SplashViewController: AuthViewControllerDelegate {
                 break
             }
         }
+        
+        guard let profile = ProfileService.shared.profile, let username = profile.userName else { return }
+        
+        ProfileImageService.shared.fetchProfileImageURL(token, username: username) { result in
+            
+        }
     }
-
+    
     private func fetchOAuthToken(_ code: String) {
-        oauth2Service.fetchOAuthToken(code: code) { [weak self] result in
+        oAuth2Service.fetchOAuthToken(code: code) { [weak self] result in
             guard let self = self else {return}
             switch result {
             case .success:

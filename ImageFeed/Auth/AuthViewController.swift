@@ -5,7 +5,6 @@ final class AuthViewController: UIViewController {
     
     private let showWebView = "ShowWebView"
     private var webView: WebViewViewControllerProtocol?
-    private var tokenStorage = OAuth2TokenStorage()
     private let oauth2Service = OAuth2Service.shared
     private var delegate: AuthViewControllerDelegate?
     

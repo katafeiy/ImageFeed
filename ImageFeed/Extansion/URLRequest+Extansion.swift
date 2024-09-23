@@ -2,7 +2,7 @@ import Foundation
 
 extension URLRequest {
     
-    static func makeHTTPRequest(
+    static func setHTTPRequest(
         path: String,
         httpMethod: String,
         url: URL = {
