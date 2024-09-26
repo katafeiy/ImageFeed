@@ -46,9 +46,11 @@ extension URLSession {
                     completion(.success(object))
                 } catch {
                     completion(.failure(error))
+                    print("Invalid JSON: \(error.localizedDescription), Данные: \(String(data: data, encoding: .utf8) ?? "")")
                 }
             case .failure(let error):
                 completion(.failure(error))
+                print("Invalid JSON: \(error.localizedDescription)")
             }
         }
         return task

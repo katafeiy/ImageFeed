@@ -32,6 +32,7 @@ final class AuthViewController: UIViewController {
     }
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+        
                 delegate?.didAuthenticate(self, didAuthenticateWithCode: code)
     }
     

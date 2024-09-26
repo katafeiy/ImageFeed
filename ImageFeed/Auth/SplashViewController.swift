@@ -14,7 +14,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
-            fetchProfile(token)
+            fetchProfileSplash(token)
             self.switchToBarController()
         } else {
             performSegue(withIdentifier: showAuthViewControllerSegueIdentifier, sender: nil)
@@ -65,48 +65,54 @@ extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         vc.dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
-            
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
-            
         }
     }
     
-    private func fetchProfile(_ token: String) {
-        
+    private func fetchProfileSplash(_ token: String) {
         ProfileService.shared.fetchProfile(token) { [weak self] result in
             guard let self else { return }
             switch result {
-            case .success:
+            case .success(let profile):
+                guard let userName = profile.userName else { return }
+                ProfileImageService.shared.fetchProfileImageURL(token, userName) { _ in }
                 self.switchToBarController()
-                
-            case .failure:
+            case .failure(let error):
+                print("Incorrect profile fetchProfileSplash: \(error.localizedDescription)")
                 break
             }
             UIBlockingProgressHUD.dismiss()
-        }
-        
-    }
-    
-    private func fetchProfileImageURL(_ token: String, _ username: String) {
-        
-        ProfileImageService.shared.fetchProfileImageURL(token, username) { result in
-            
         }
     }
     
     private func fetchOAuthToken(_ code: String) {
         oAuth2Service.fetchOAuthToken(code: code) { [weak self] result in
-            guard let self = self else {return}
+            guard let self else {return}
             switch result {
             case .success (let token):
-                fetchProfile(token)
-                self.switchToBarController()
+                fetchProfileSplash(token)
             case .failure (let error):
+                UIBlockingProgressHUD.dismiss()
+                self.showAlertError(error: error.localizedDescription)
                 print("Incorrect token: \(error.localizedDescription)")
+                break
             }
             UIBlockingProgressHUD.dismiss()
         }
+    }
+    
+    private func showAlertError(error: String) {
+        let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
+                                      message: "Не удалось войти в систему\n"+" "+"\(error)\n",
+                                      preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK",
+                                   style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 

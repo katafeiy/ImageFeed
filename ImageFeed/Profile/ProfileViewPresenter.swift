@@ -7,8 +7,15 @@ protocol ProfileViewPresenterProtocol: AnyObject {
 
 final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -> showAlert()
     weak var delegate: ProfileViewPresenterProtocol?
+    
+    func avatarURL() -> URL? {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return nil }
+        return url
+    }
    
-
     func didSelectLogoutButton() {
         delegate?.showAlert()
     }

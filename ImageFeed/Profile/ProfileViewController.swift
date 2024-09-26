@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -79,12 +80,11 @@ final class ProfileViewController: UIViewController {
     
     private func updateAvatar() {
         
-        guard
-            let profileImageURL = ProfileImageService.shared.avatarURL,
-            let url = URL(string: profileImageURL)
-        else { return }
-        
-        
+        let processor = RoundCornerImageProcessor(cornerRadius: 36, backgroundColor: .clear)
+        avatarAccountImage.kf.indicatorType = .activity
+        avatarAccountImage.kf.setImage(with: presenter.avatarURL(),
+                                       placeholder: UIImage(named: "placeholder.jpeg"),
+                                       options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png)])
     }
     
     private func updateProfileDetails(profile: Profile) {
@@ -127,6 +127,7 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewPresenterProtocol {
+    
     func goToAuthViewController() {
         guard let window = UIApplication.shared.windows.first else {
             assertionFailure("Invalid window configuration")

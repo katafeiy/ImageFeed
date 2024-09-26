@@ -5,6 +5,7 @@ final class ProfileImageService {
     static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     static let shared = ProfileImageService()
     private(set) var avatarURL: String?
+    private var task: URLSessionTask?
     
     struct UserResult: Codable {
         let profileImage: ImageURL?
@@ -29,7 +30,7 @@ final class ProfileImageService {
             let token = token,
             let username = username
         else { preconditionFailure("Incorrect URL") }
-        
+        print("url: \(url)")
         var request = URLRequest.setHTTPRequest(
             path: "/users/\(username)",
             httpMethod: "GET",
@@ -41,27 +42,28 @@ final class ProfileImageService {
     
     func fetchProfileImageURL(_ token: String, _ username: String, _ completion: @escaping Closure.ClosureResultStringError) {
         
-        guard let request = loadProfileImageRequest(token, username) else { return }
+        assert(Thread.isMainThread)
+        task?.cancel()
         
-        let task = URLSession.shared.data(for: request) { [weak self] result in
+        guard let request = loadProfileImageRequest(token, username) else { return }
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) in
+            
             guard let self else { return }
             switch result {
-            case .success(let data):
-                do  {
-                    let userResult = try JSONDecoder().decode(UserResult.self, from: data)
-                    self.avatarURL = userResult.profileImage?.small
-                    guard let avatarURL = self.avatarURL else {return}
-                    completion(.success(avatarURL))
-                    NotificationCenter.default.post(name: ProfileImageService.didChangeNotification,
-                                                    object: self,
-                                                    userInfo: ["URL": avatarURL])
-                } catch {
-                    completion(.failure(error))
-                }
+            case .success(let userResult):
+                self.avatarURL = userResult.profileImage?.small
+                guard let avatarURL = self.avatarURL else { return }
+                completion(.success(avatarURL))
+                NotificationCenter.default.post(name: ProfileImageService.didChangeNotification,
+                                                object: self,
+                                                userInfo: ["URL": avatarURL])
             case .failure(let error):
                 completion(.failure(error))
+                print("Invalid response: \(error.localizedDescription)")
             }
+            self.task = nil
         }
+        self.task = task
         task.resume()
     }
 }

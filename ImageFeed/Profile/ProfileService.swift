@@ -49,20 +49,22 @@ final class ProfileService {
         
         guard let request = loadProfileRequest(token) else { return }
         
-        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error> ) in
-            
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
             guard let self else { return }
-            
+            self.task = nil
             switch result {
                 case .success(let profileResult):
                 self.profile = Profile(userName: ("\(profileResult.userName ?? "")"),
                                        fullName: ("\(profileResult.firstName ?? "")"+" "+"\(profileResult.lastName ?? "")"),
                                        loginName: ("@\(profileResult.userName ?? "")"),
                                        bio: ("\(profileResult.bio ?? "")"))
+                guard let profile = self.profile else { return }
+                completion(.success(profile))
+                print("2: профиль есть и сохранен")
             case .failure(let error):
-                print("Incorrect profile: \(error.localizedDescription)")
+                completion(.failure(error))
+                print("Incorrect profile в fetchProfile: \(error.localizedDescription)")
             }
-            self.task = nil
         }
         self.task = task
         task.resume()

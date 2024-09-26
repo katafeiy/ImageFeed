@@ -54,41 +54,21 @@ final class OAuth2Service {
         }
         
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
-            guard let self else { return }
+            guard let self = self else { return }
+            self.task = nil
             switch result {
             case .success(let authToken):
                 guard let authToken = authToken.accessToken else { return }
                 OAuth2TokenStorage.token = authToken
                 completion(.success(authToken))
             case .failure(let error):
-                completion(.failure(error))
-                print("Incorrect token response: \(error.localizedDescription)")
                 self.lastCode = nil
+                completion(.failure(error))
+                print("[objectTask]:[Incorrect token response]-[Error:\(error.localizedDescription)]")
             }
         }
-        self.task = nil
+        self.task = task
         task.resume()
-        
-        
-        //        let task = URLSession.shared.data(for: request) { result in
-        //
-        //            switch result {
-        //            case .success(let data):
-        //                do {
-        //                    let authToken = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-        //                    guard let authToken = authToken.accessToken else { return }
-        //                    completion(.success(authToken))
-        //                } catch {
-        //                    completion(.failure(error))
-        //                }
-        //            case .failure(let error):
-        //                completion(.failure(error))
-        //                self.lastCode = nil
-        //            }
-        //            self.task = nil
-        //        }
-        //        self.task = task
-        //        task.resume()
     }
 }
 
