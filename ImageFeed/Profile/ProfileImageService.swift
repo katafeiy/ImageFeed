@@ -30,7 +30,7 @@ final class ProfileImageService {
             let token = token,
             let username = username
         else { preconditionFailure("Incorrect URL") }
-        print("url: \(url)")
+        
         var request = URLRequest.setHTTPRequest(
             path: "/users/\(username)",
             httpMethod: "GET",
@@ -59,7 +59,7 @@ final class ProfileImageService {
                                                 userInfo: ["URL": avatarURL])
             case .failure(let error):
                 completion(.failure(error))
-                print("Invalid response: \(error.localizedDescription)")
+                print("[fetchProfileImageURL -> objectTask]:[Invalid response]-[Error: \(error.localizedDescription)]")
             }
             self.task = nil
         }

@@ -1,4 +1,5 @@
-import Foundation
+import UIKit
+import SwiftKeychainWrapper
 
 protocol ProfileViewPresenterProtocol: AnyObject {
     func showAlert()
@@ -21,7 +22,7 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
     }
     
     func logout() {
-        OAuth2TokenStorage.token = nil
+        OAuth2TokenStorage.clear()
         delegate?.goToAuthViewController()
     }
 }

@@ -4,7 +4,6 @@ final class OAuth2Service {
     
     static let shared = OAuth2Service()
     
-    
     private var task: URLSessionTask?
     private var lastCode: String?
     
@@ -46,16 +45,15 @@ final class OAuth2Service {
         task?.cancel()
         lastCode = code
         
-        guard
-            let request = loadOAuth2ServiceToken(code: code)
+        guard let request = loadOAuth2ServiceToken(code: code)
         else {
             completion(.failure(AuthServiceError.invalidRequest))
+            print("[fetchOAuthToken -> loadOAuth2ServiceToken]:[Invalid request]-[Error: \(AuthServiceError.invalidRequest)")
             return
         }
         
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
             guard let self = self else { return }
-            self.task = nil
             switch result {
             case .success(let authToken):
                 guard let authToken = authToken.accessToken else { return }
@@ -64,8 +62,9 @@ final class OAuth2Service {
             case .failure(let error):
                 self.lastCode = nil
                 completion(.failure(error))
-                print("[objectTask]:[Incorrect token response]-[Error:\(error.localizedDescription)]")
+                print("[fetchOAuthToken -> objectTask]:[Incorrect token]-[Error: \(error.localizedDescription)]")
             }
+            self.task = nil
         }
         self.task = task
         task.resume()

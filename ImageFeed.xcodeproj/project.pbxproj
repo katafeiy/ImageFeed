@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12062C222CA68F5300F035AC /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 12062C212CA68F5300F035AC /* SwiftKeychainWrapper */; };
 		1212B4B12C7D11FC00E0AE46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127610632C5D07DF0003AB76 /* LaunchScreen.storyboard */; };
 		123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E4CE42C60372800D80884 /* ImagesListCell.swift */; };
 		125E955A2CA54C8F00F21728 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 125E95592CA54C8F00F21728 /* Kingfisher */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		123E4CE42C60372800D80884 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		125DB1952CA69659009AE17E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		12615AF32C678F0F00D95997 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		12716F4E2CA000FC0082BE53 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		12734FC42C91863300CB6448 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			files = (
 				125E955A2CA54C8F00F21728 /* Kingfisher in Frameworks */,
 				127FB6B72C96CA6D006F3D80 /* ProgressHUD in Frameworks */,
+				12062C222CA68F5300F035AC /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +113,7 @@
 				1298D70A2C80503A00272702 /* Constants.swift */,
 				12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */,
 				1280A7722C9C9DCB00723279 /* NetworkError.swift */,
+				125DB1952CA69659009AE17E /* TabBarController.swift */,
 				1278B6832C8AEAD4005E3B75 /* Extansion */,
 				12778C6B2C70A81100F3E646 /* Single Image View */,
 				12874A972C81DD7F009787A7 /* Auth */,
@@ -181,6 +185,7 @@
 			packageProductDependencies = (
 				127FB6B62C96CA6D006F3D80 /* ProgressHUD */,
 				125E95592CA54C8F00F21728 /* Kingfisher */,
+				12062C212CA68F5300F035AC /* SwiftKeychainWrapper */,
 			);
 			productName = ImageFeed;
 			productReference = 127610552C5D07DE0003AB76 /* ImageFeed.app */;
@@ -213,6 +218,7 @@
 			packageReferences = (
 				127FB6B52C96CA6D006F3D80 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 				125E95582CA54C8F00F21728 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				12062C202CA68F5300F035AC /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 127610562C5D07DE0003AB76 /* Products */;
 			projectDirPath = "";
@@ -495,6 +501,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		12062C202CA68F5300F035AC /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		125E95582CA54C8F00F21728 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -514,6 +528,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		12062C212CA68F5300F035AC /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12062C202CA68F5300F035AC /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
 		125E95592CA54C8F00F21728 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 125E95582CA54C8F00F21728 /* XCRemoteSwiftPackageReference "Kingfisher" */;

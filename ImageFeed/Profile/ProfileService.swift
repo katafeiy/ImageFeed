@@ -36,7 +36,7 @@ final class ProfileService {
             httpMethod: "GET",
             url: url)
         
-        guard let token else { preconditionFailure("Incorrect Token") }
+        guard let token else { preconditionFailure("Incorrect token") }
     
         request?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
@@ -51,7 +51,6 @@ final class ProfileService {
         
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
             guard let self else { return }
-            self.task = nil
             switch result {
                 case .success(let profileResult):
                 self.profile = Profile(userName: ("\(profileResult.userName ?? "")"),
@@ -60,11 +59,11 @@ final class ProfileService {
                                        bio: ("\(profileResult.bio ?? "")"))
                 guard let profile = self.profile else { return }
                 completion(.success(profile))
-                print("2: профиль есть и сохранен")
             case .failure(let error):
                 completion(.failure(error))
-                print("Incorrect profile в fetchProfile: \(error.localizedDescription)")
+                print("[fetchProfile -> objectTask]:[Incorrect profile]: [Error:\(error.localizedDescription)]")
             }
+            self.task = nil
         }
         self.task = task
         task.resume()
