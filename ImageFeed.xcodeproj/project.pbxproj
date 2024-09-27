@@ -113,7 +113,6 @@
 				1298D70A2C80503A00272702 /* Constants.swift */,
 				12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */,
 				1280A7722C9C9DCB00723279 /* NetworkError.swift */,
-				125DB1952CA69659009AE17E /* TabBarController.swift */,
 				1278B6832C8AEAD4005E3B75 /* Extansion */,
 				12778C6B2C70A81100F3E646 /* Single Image View */,
 				12874A972C81DD7F009787A7 /* Auth */,
@@ -156,6 +155,7 @@
 		12874A972C81DD7F009787A7 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				125DB1952CA69659009AE17E /* TabBarController.swift */,
 				12874A982C81DDCD009787A7 /* WebViewViewController.swift */,
 				12874A9A2C81DE23009787A7 /* AuthViewController.swift */,
 				1278B6812C8AB48F005E3B75 /* OAuth2Service.swift */,
