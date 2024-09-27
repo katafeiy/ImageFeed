@@ -43,6 +43,9 @@
                         <tabBarAppearance key="standardAppearance">
                             <color key="backgroundColor" name="YP Black"/>
                         </tabBarAppearance>
+                        <connections>
+                            <outlet property="delegate" destination="x8Q-Xi-elR" id="bg8-pj-LXg"/>
+                        </connections>
                     </tabBar>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j3w-0Z-6ji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
