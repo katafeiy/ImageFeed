@@ -3,7 +3,7 @@ import UIKit
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
-    
+
     private var task: URLSessionTask?
     private var lastCode: String?
     
@@ -70,7 +70,7 @@ final class OAuth2Service {
         task.resume()
     }
     
-    func logOut() {
+    func logoutSplash() {
         // unSplash logout
         // Этот метод пока не реализован
     }

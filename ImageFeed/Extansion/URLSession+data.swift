@@ -22,11 +22,14 @@ extension URLSession {
                     fullCompletionOnTheMainTread(.success(data))
                 } else {
                     fullCompletionOnTheMainTread(.failure(NetworkError.httpStatusCode(statusCode)))
+                    print("[data -> dataTask]:[Incorrect DATA]:[Invalid HTTP Status Code:\(NetworkError.httpStatusCode(statusCode))]")
                 }
             } else if let error = error {
                 fullCompletionOnTheMainTread(.failure(NetworkError.urlRequestError(error)))
+                print("[data -> dataTask]:[Incorrect DATA]:[URLRequest error:\(error.localizedDescription)]")
             } else {
                 fullCompletionOnTheMainTread(.failure(NetworkError.urlSessionError))
+                print("[data -> dataTask]:[Incorrect DATA]:[URLSession error:\(NetworkError.urlSessionError)]")
             }
         })
         return task
@@ -46,11 +49,11 @@ extension URLSession {
                     completion(.success(object))
                 } catch {
                     completion(.failure(error))
-                    print("Invalid JSON: \(error.localizedDescription), Данные: \(String(data: data, encoding: .utf8) ?? "")")
+                    print("[objectTask -> data]:[Invalid JSON]:[Error:\(error.localizedDescription)], Данные: \(String(data: data, encoding: .utf8) ?? "")")
                 }
             case .failure(let error):
                 completion(.failure(error))
-                print("Invalid JSON: \(error.localizedDescription)")
+                print("[objectTask -> data]:[Invalid JSON]:[Error:\(error.localizedDescription)]")
             }
         }
         return task
