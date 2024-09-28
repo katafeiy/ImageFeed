@@ -97,6 +97,8 @@ final class ProfileViewController: UIViewController {
     
     private func configurationViews() {
         
+        view.backgroundColor = .ypBlack
+        
         [avatarAccountImage, logoutAccountButton, self.stackView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false; view.addSubview($0)}
         
         NSLayoutConstraint.activate([
@@ -133,8 +135,7 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
             assertionFailure("Invalid window configuration")
             return
         }
-        let viewController = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "SplashViewController")
+        let viewController = SplashViewController()
         window.rootViewController = viewController
     }
     

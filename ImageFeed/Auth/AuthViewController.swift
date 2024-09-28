@@ -11,6 +11,10 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    deinit {
+        print("AuthViewController deinit")
+    }
+    
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
     }

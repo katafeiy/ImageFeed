@@ -22,6 +22,7 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
     }
     
     func logout() {
+        OAuth2Service.shared.logOut()
         OAuth2TokenStorage.clear()
         delegate?.goToAuthViewController()
     }

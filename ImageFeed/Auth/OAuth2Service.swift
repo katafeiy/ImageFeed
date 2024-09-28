@@ -69,6 +69,11 @@ final class OAuth2Service {
         self.task = task
         task.resume()
     }
+    
+    func logOut() {
+        // unSplash logout
+        // Этот метод пока не реализован
+    }
 }
 
 enum OAuth2ServiceConstants {
