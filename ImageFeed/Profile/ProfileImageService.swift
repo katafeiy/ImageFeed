@@ -7,6 +7,8 @@ final class ProfileImageService {
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
     
+    private init() {}
+    
     struct UserResult: Codable {
         let profileImage: ImageURL?
         

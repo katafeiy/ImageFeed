@@ -116,6 +116,7 @@ final class ProfileViewController: UIViewController {
             nickNameAccountLabel.heightAnchor.constraint(equalToConstant: 18),
             descriptionAccountLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 18),
             
+            
             stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 120)

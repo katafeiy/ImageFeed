@@ -36,7 +36,6 @@ final class SplashViewController: UIViewController {
         
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
             fetchProfileSplash(token)
-            self.switchToBarController()
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else {return}

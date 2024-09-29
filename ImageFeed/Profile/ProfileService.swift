@@ -27,6 +27,8 @@ final class ProfileService {
     private(set) var profile: Profile?
     private var task: URLSessionTask?
     
+    private init() {}
+    
     private func loadProfileRequest(_ token: String?) -> URLRequest? {
         
         guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
