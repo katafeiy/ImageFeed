@@ -1,7 +1,7 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
-
+    
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.vector
@@ -101,7 +101,6 @@ extension SplashViewController: AuthViewControllerDelegate {
                 UIBlockingProgressHUD.dismiss()
                 print("[fetchOAuthToken]:[Incorrect token]:[Error:\(error.localizedDescription)]")
                 self.showAlertError(error: error.localizedDescription)
-                break
             }
         }
     }
