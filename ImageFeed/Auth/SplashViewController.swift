@@ -103,7 +103,6 @@ extension SplashViewController: AuthViewControllerDelegate {
                 print("Incorrect token: \(error.localizedDescription)")
                 break
             }
-            UIBlockingProgressHUD.dismiss()
         }
     }
     
