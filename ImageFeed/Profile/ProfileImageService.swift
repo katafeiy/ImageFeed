@@ -2,12 +2,13 @@ import UIKit
 
 final class ProfileImageService {
     
-    static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
+//  MARK: Объявление строгого singleton:
     static let shared = ProfileImageService()
+    private init() {}
+    
+    static let didChangeNotification = Notification.Name(rawValue: "ProfileImageProviderDidChange")
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
-    
-    private init() {}
     
     struct UserResult: Codable {
         let profileImage: ImageURL?

@@ -23,11 +23,13 @@ struct Profile {
 
 final class ProfileService {
     
+//  MARK: Объявление строгого singleton:
     static let shared = ProfileService()
+    private init() {}
+    
     private(set) var profile: Profile?
     private var task: URLSessionTask?
     
-    private init() {}
     
     private func loadProfileRequest(_ token: String?) -> URLRequest? {
         

@@ -99,8 +99,8 @@ extension SplashViewController: AuthViewControllerDelegate {
                 fetchProfileSplash(token)
             case .failure (let error):
                 UIBlockingProgressHUD.dismiss()
-                self.showAlertError(error: error.localizedDescription)
                 print("Incorrect token: \(error.localizedDescription)")
+                self.showAlertError(error: error.localizedDescription)
                 break
             }
         }
