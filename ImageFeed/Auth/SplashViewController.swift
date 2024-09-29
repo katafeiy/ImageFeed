@@ -84,7 +84,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                 ProfileImageService.shared.fetchProfileImageURL(token, userName) { _ in }
                 self.switchToBarController()
             case .failure(let error):
-                print("Incorrect profile fetchProfileSplash: \(error.localizedDescription)")
+                print("[fetchProfileSplash]:[Incorrect profile]:[Error:\(error.localizedDescription)]")
                 break
             }
             UIBlockingProgressHUD.dismiss()
@@ -99,7 +99,7 @@ extension SplashViewController: AuthViewControllerDelegate {
                 fetchProfileSplash(token)
             case .failure (let error):
                 UIBlockingProgressHUD.dismiss()
-                print("Incorrect token: \(error.localizedDescription)")
+                print("[fetchOAuthToken]:[Incorrect token]:[Error:\(error.localizedDescription)]")
                 self.showAlertError(error: error.localizedDescription)
                 break
             }
