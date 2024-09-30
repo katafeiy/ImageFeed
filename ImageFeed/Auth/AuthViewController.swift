@@ -19,7 +19,7 @@ final class AuthViewController: UIViewController {
         vc.dismiss(animated: true)
     }
     
-    func setDelegate(_ delegate: AuthViewControllerDelegate ) {
+    func setDelegate(_ delegate: AuthViewControllerDelegate) {
         self.delegate = delegate
     }
     

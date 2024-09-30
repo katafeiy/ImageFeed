@@ -18,7 +18,7 @@ final class WebViewViewController: UIViewController {
         loadAuthView()
         configProgressView()
         updateProgressObservation()
-        
+                
     }
     
     private func updateProgressObservation() {

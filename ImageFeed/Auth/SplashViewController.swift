@@ -1,6 +1,6 @@
 import UIKit
 
-final class SplashViewController: UIViewController, SplashViewControllerProtocol {
+final class SplashViewController: UIViewController {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -8,15 +8,14 @@ final class SplashViewController: UIViewController, SplashViewControllerProtocol
         return imageView
     }()
     
-    private let showAuthViewControllerIdentifier = "showAuthViewController"
+//    private let showAuthViewControllerIdentifier = "showAuthViewController"
     private let oAuth2Service = OAuth2Service.shared
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurationView()
         print(#function)
-        oAuth2Service.delegate = self // делаю делегатом SplahViewController
     }
     
     private func configurationView() {
@@ -37,7 +36,9 @@ final class SplashViewController: UIViewController, SplashViewControllerProtocol
         super.viewDidAppear(animated)
         
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
+            
             fetchProfileSplash(token)
+            
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else {return}
@@ -45,6 +46,7 @@ final class SplashViewController: UIViewController, SplashViewControllerProtocol
             authViewController.modalPresentationStyle = .fullScreen
             present(authViewController, animated: true)
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +76,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
-            
         }
     }
     
@@ -96,39 +97,37 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func fetchOAuthToken(_ code: String) {
         oAuth2Service.fetchOAuthToken(code: code) { [weak self] result in
+            UIBlockingProgressHUD.dismiss()
             guard let self else {return}
             switch result {
             case .success (let token):
                 fetchProfileSplash(token)
             case .failure (let error):
-                UIBlockingProgressHUD.dismiss()
+                self.showAlertError()
                 print("[fetchOAuthToken]:[Incorrect token]:[Error:\(error.localizedDescription)]")
-//                self.showAlertError() <- изначально вызывал алерт тут
                 break
             }
         }
     }
-    
+     
     func showAlertError() {
         
-            let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
-                                          message: "Не удалось войти в систему\n",
-                                          preferredStyle: .alert)
-            
-            let action = UIAlertAction(title: "OK", style: .default) { _ in
-                
-                alert.dismiss(animated: true)
-                
+        let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
+                                      message: "Не удалось войти в систему\n",
+                                      preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "OK", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(action)
+        guard let splash = UIApplication.shared.windows.first?.rootViewController else { return }
+        if var topController = splash.presentedViewController {
+            while let presented = topController.presentedViewController {
+                topController = presented
             }
-            alert.addAction(action)
-            self.present(alert, animated: true)
+            topController.present(alert, animated: true)
+            return
+        }
+        splash.present(alert, animated: true)
     }
-}
-
-// Создал протокол и указал в нем метод для вызова из OAuth2Service
-
-protocol SplashViewControllerProtocol: AnyObject {
-    
-    func showAlertError()
-    
 }
