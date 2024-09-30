@@ -36,9 +36,7 @@ final class SplashViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
-            
             fetchProfileSplash(token)
-            
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else {return}
@@ -76,6 +74,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
+            
         }
     }
     
