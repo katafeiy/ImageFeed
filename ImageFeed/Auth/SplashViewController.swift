@@ -1,6 +1,6 @@
 import UIKit
 
-final class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController, SplashViewControllerProtocol {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -10,11 +10,13 @@ final class SplashViewController: UIViewController {
     
     private let showAuthViewControllerIdentifier = "showAuthViewController"
     private let oAuth2Service = OAuth2Service.shared
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configurationView()
         print(#function)
+        oAuth2Service.delegate = self // делаю делегатом SplahViewController
     }
     
     private func configurationView() {
@@ -72,6 +74,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             UIBlockingProgressHUD.show()
             self.fetchOAuthToken(code)
+            
         }
     }
     
@@ -100,22 +103,32 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .failure (let error):
                 UIBlockingProgressHUD.dismiss()
                 print("[fetchOAuthToken]:[Incorrect token]:[Error:\(error.localizedDescription)]")
-                self.showAlertError(error: error.localizedDescription)
+//                self.showAlertError() <- изначально вызывал алерт тут
+                break
             }
         }
     }
     
-    private func showAlertError(error: String) {
-        let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
-                                      message: "Не удалось войти в систему\n"+" "+"\(error)\n",
-                                      preferredStyle: .alert)
+    func showAlertError() {
         
-        let action = UIAlertAction(title: "OK",
-                                   style: .default) { _ in
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(action)
-        present(alert, animated: true)
+            let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
+                                          message: "Не удалось войти в систему\n",
+                                          preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK", style: .default) { _ in
+                
+                alert.dismiss(animated: true)
+                
+            }
+            alert.addAction(action)
+            self.present(alert, animated: true)
     }
 }
 
+// Создал протокол и указал в нем метод для вызова из OAuth2Service
+
+protocol SplashViewControllerProtocol: AnyObject {
+    
+    func showAlertError()
+    
+}

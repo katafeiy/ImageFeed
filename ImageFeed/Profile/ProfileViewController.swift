@@ -149,17 +149,14 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
                                    style: .default) { [weak self] _ in
             guard let self else { return }
             self.presenter.logout()
-            
         }
         
         let cancel = UIAlertAction(title: "Cancel",
                                    style: .cancel) { _ in
             alert.dismiss(animated: true)
         }
-        
         alert.addAction(action)
         alert.addAction(cancel)
-        
         present(alert, animated: true)
     }
 }

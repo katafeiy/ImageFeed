@@ -3,9 +3,11 @@ import UIKit
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
-
+    
     private var task: URLSessionTask?
     private var lastCode: String?
+    
+    weak var delegate: SplashViewControllerProtocol? // Делаю слабую ссылку с имплементацией SplashViewControllerProtocol
     
     private init() {}
     
@@ -45,6 +47,7 @@ final class OAuth2Service {
         task?.cancel()
         lastCode = code
         
+    
         guard let request = loadOAuth2ServiceToken(code: code)
         else {
             completion(.failure(AuthServiceError.invalidRequest))
@@ -61,6 +64,8 @@ final class OAuth2Service {
                 completion(.success(authToken))
             case .failure(let error):
                 self.lastCode = nil
+                guard let delegate else { return }  // раскрываю опциональность delegate так как это слабая ссылка
+                delegate.showAlertError()           // вызываю мето делегата
                 completion(.failure(error))
                 print("[fetchOAuthToken -> objectTask]:[Incorrect token]-[Error: \(error.localizedDescription)]")
             }
@@ -83,5 +88,3 @@ enum OAuth2ServiceConstants {
 enum AuthServiceError: Error {
     case invalidRequest
 }
-
-

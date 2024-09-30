@@ -28,25 +28,24 @@ final class AuthViewController: UIViewController {
         if segue.identifier == showWebView {
             guard let webView = segue.destination as? WebViewViewController
                     
-            else { 
+            else {
                 assertionFailure("Invalid segue destination")
                 return }
             webView.setDelegate(self)
         }
     }
+}
+
+extension AuthViewController: WebViewViewControllerDelegate {
     
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         
-                delegate?.didAuthenticate(self, didAuthenticateWithCode: code)
+        delegate?.didAuthenticate(self, didAuthenticateWithCode: code)
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
         dismiss(animated: true, completion: nil)
     }
-}
-
-extension AuthViewController: WebViewViewControllerDelegate {
-    
 }
 
 protocol AuthViewControllerDelegate: AnyObject {
