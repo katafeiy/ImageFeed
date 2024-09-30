@@ -7,10 +7,8 @@ final class SplashViewController: UIViewController {
         imageView.image = UIImage.vector
         return imageView
     }()
-    
-//    private let showAuthViewControllerIdentifier = "showAuthViewController"
+
     private let oAuth2Service = OAuth2Service.shared
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

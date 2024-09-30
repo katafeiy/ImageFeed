@@ -45,7 +45,6 @@ final class OAuth2Service {
         task?.cancel()
         lastCode = code
         
-    
         guard let request = loadOAuth2ServiceToken(code: code)
         else {
             completion(.failure(AuthServiceError.invalidRequest))

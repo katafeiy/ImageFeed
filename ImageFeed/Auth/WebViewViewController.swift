@@ -40,7 +40,6 @@ final class WebViewViewController: UIViewController {
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
     
-    
     private func configProgressView() {
         progressView.progress = 0.5
         progressView.progressTintColor = .ypBlack
