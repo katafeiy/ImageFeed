@@ -9,7 +9,6 @@ final class SplashViewController: UIViewController {
     }()
     
     private let oAuth2Service = OAuth2Service.shared
-//    private var isActive: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +32,7 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        if isActive == true {
-//            let svc = SplashViewController()
-//            svc.modalPresentationStyle = .fullScreen
-//            present(svc, animated: true)
-//        }
-        
+ 
         if let token = OAuth2TokenStorage.token, !token.isEmpty {
             fetchProfileSplash(token)
         } else {
@@ -75,7 +68,7 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     func didAuthenticate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
         UIBlockingProgressHUD.show()
-        fetchOAuthToken(code, vc: vc)
+        fetchOAuthToken(code, vc)
     }
     
     private func fetchProfileSplash(_ token: String) {
@@ -85,7 +78,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .success(let profile):
                 guard let userName = profile.userName else { return }
                 ProfileImageService.shared.fetchProfileImageURL(token, userName) { _ in }
-//                isActive = false
                 self.switchToBarController()
             case .failure(let error):
                 print("[fetchProfileSplash]:[Incorrect profile]:[Error:\(error.localizedDescription)]")
@@ -95,8 +87,7 @@ extension SplashViewController: AuthViewControllerDelegate {
         }
     }
     
-    private func fetchOAuthToken(_ code: String, vc: UIViewController) {
-//      isActive = true
+    private func fetchOAuthToken(_ code: String, _ vc: UIViewController) {
         oAuth2Service.fetchOAuthToken(code: code) { [weak self] result in
             UIBlockingProgressHUD.dismiss()
             guard let self else {return}
