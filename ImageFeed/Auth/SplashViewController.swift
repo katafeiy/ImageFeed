@@ -67,8 +67,12 @@ final class SplashViewController: UIViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     
     func didAuthenticate(_ vc: AuthViewController, didAuthenticateWithCode code: String) {
+
+        vc.dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
         UIBlockingProgressHUD.show()
         fetchOAuthToken(code, vc)
+        }
     }
     
     private func fetchProfileSplash(_ token: String) {

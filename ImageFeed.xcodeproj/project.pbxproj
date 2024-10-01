@@ -33,6 +33,7 @@
 		12874A9B2C81DE23009787A7 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12874A9A2C81DE23009787A7 /* AuthViewController.swift */; };
 		129837AF2C7D138E00C34492 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1276105E2C5D07DE0003AB76 /* Main.storyboard */; };
 		1298D70B2C80503A00272702 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298D70A2C80503A00272702 /* Constants.swift */; };
+		129A7C132CAC1F8500B7B241 /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A7C122CAC1F8500B7B241 /* ImagesListService.swift */; };
 		12C3C9862C9B5B3D007C8FDA /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		12874A982C81DDCD009787A7 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		12874A9A2C81DE23009787A7 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		1298D70A2C80503A00272702 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		129A7C122CAC1F8500B7B241 /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 			children = (
 				123E4CE42C60372800D80884 /* ImagesListCell.swift */,
 				1276105C2C5D07DE0003AB76 /* ImagesListViewController.swift */,
+				129A7C122CAC1F8500B7B241 /* ImagesListService.swift */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				1278B6872C8AF968005E3B75 /* OAuthTokenResponseBody.swift in Sources */,
 				12615AF42C678F0F00D95997 /* ProfileViewController.swift in Sources */,
 				12716F4F2CA001170082BE53 /* ProfileImageService.swift in Sources */,
+				129A7C132CAC1F8500B7B241 /* ImagesListService.swift in Sources */,
 				127610592C5D07DE0003AB76 /* AppDelegate.swift in Sources */,
 				1280A76F2C9C27C200723279 /* ProfileService.swift in Sources */,
 				12734FC52C91863300CB6448 /* SplashViewController.swift in Sources */,
