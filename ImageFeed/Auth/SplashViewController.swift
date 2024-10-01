@@ -7,7 +7,7 @@ final class SplashViewController: UIViewController {
         imageView.image = UIImage.vector
         return imageView
     }()
-
+    
     private let oAuth2Service = OAuth2Service.shared
     
     override func viewDidLoad() {
@@ -38,11 +38,11 @@ final class SplashViewController: UIViewController {
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let authViewController = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as? AuthViewController else {return}
+            authViewController.dismiss(animated: true)
             authViewController.setDelegate(self)
             authViewController.modalPresentationStyle = .fullScreen
             present(authViewController, animated: true)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +106,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             }
         }
     }
-     
+    
     func showAlertError() {
         
         let alert = UIAlertController(title: "Ой что то пошло не так...(\n",

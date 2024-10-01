@@ -65,15 +65,12 @@ final class WebViewViewController: UIViewController {
         }
         
         let request = URLRequest(url: url)
-        webView.load(request)
-        
+        webView.load(request)        
     }
     
     @IBAction private func tapBackButton(_ sender: Any) {
-        
         guard let delegate else { return }
         delegate.webViewViewControllerDidCancel(self)
-        
     }
 }
 
