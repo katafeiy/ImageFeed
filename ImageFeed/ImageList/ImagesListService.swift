@@ -10,7 +10,7 @@ struct Photo {
     let isLike: Bool?
 }
 
-struct PhotoResult: Codable {
+struct PhotoResult: Decodable {
     let id: String?
     let width: Int?
     let height: Int?
@@ -30,7 +30,7 @@ struct PhotoResult: Codable {
     }
 }
 
-struct ImageUrlsResult: Codable {
+struct ImageUrlsResult: Decodable {
     let thumb: String?
     let large: String?
     
@@ -64,7 +64,6 @@ final class ImagesListService {
         return request
     }
     
-    
     func fetchPhotoNextPage() {
         
         assert(Thread.isMainThread)
@@ -77,7 +76,7 @@ final class ImagesListService {
         
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<PhotoResult, Error>) in
             guard let self else { return }
-            
+
             switch result {
             case .success(let photos):
                 let newPhotos = Photo(id: photos.id,
