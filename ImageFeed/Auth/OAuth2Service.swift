@@ -4,11 +4,14 @@ final class OAuth2Service {
     
     static let shared = OAuth2Service()
     
+    private var task: URLSessionTask?
+    private var lastCode: String?
+    
     private init() {}
     
-    private func loadOAuth2ServiceToken(code: String) -> URLRequest {
+    private func loadOAuth2ServiceToken(code: String) -> URLRequest? {
         
-        guard var urlComponent = URLComponents(string: OAuth2ServiceConstants.unsplashTokenURLString)
+        guard var urlComponent = URLComponents(string: OAuth2ServiceConstants.unSplashTokenURLString)
         else {
             preconditionFailure("Incorrect URL")
         }
@@ -32,31 +35,51 @@ final class OAuth2Service {
     
     func fetchOAuthToken(code: String, completion: @escaping Closure.ClosureResultStringError) {
         
-        let request = loadOAuth2ServiceToken(code: code)
-    
-        let task = URLSession.shared.data(for: request) { result in
-            
-            switch result {
-            
-            case .success(let data):
-                do {
-                    let authToken = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: data)
-                    guard let authToken = authToken.accessToken else { return }
-                    completion(.success(authToken))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        // Логика для предотвращения гонки
+        
+        assert(Thread.isMainThread)
+        guard lastCode != code else {
+            completion(.failure(AuthServiceError.invalidRequest))
+            return
         }
+        task?.cancel()
+        lastCode = code
+        
+        guard let request = loadOAuth2ServiceToken(code: code)
+        else {
+            completion(.failure(AuthServiceError.invalidRequest))
+            print("[fetchOAuthToken -> loadOAuth2ServiceToken]:[Invalid request]-[Error: \(AuthServiceError.invalidRequest)")
+            return
+        }
+        
+        let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let authToken):
+                guard let authToken = authToken.accessToken else { return }
+                OAuth2TokenStorage.token = authToken
+                completion(.success(authToken))
+            case .failure(let error):
+                self.lastCode = nil
+                completion(.failure(error))
+                print("[fetchOAuthToken -> objectTask]:[Incorrect token]-[Error: \(error.localizedDescription)]")
+            }
+            self.task = nil
+        }
+        self.task = task
         task.resume()
+    }
+    
+    func logoutSplash() {
+        // unSplash logout
+        // Этот метод пока не реализован
     }
 }
 
 enum OAuth2ServiceConstants {
-    static let unsplashTokenURLString = "https://unsplash.com/oauth/token"
+    static let unSplashTokenURLString = "https://unsplash.com/oauth/token"
 }
 
-
-
+enum AuthServiceError: Error {
+    case invalidRequest
+}

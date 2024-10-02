@@ -1,8 +1,10 @@
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
-
+    
     private let presenter = ProfileViewPresenter()
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     private let avatarAccountImage: UIImageView = {
         let image = UIImageView()
@@ -31,7 +33,7 @@ final class ProfileViewController: UIViewController {
         return name
     }()
     
-    private let nicknameAccountLabel: UILabel = {
+    private let nickNameAccountLabel: UILabel = {
         let nickname = UILabel()
         nickname.text = "@katafey"
         nickname.textColor = .ypGray
@@ -48,7 +50,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [nameAccountLabel, nicknameAccountLabel, descriptionAccountLabel])
+        let stack = UIStackView(arrangedSubviews: [nameAccountLabel, nickNameAccountLabel, descriptionAccountLabel])
         stack.axis = .vertical
         stack.distribution = .equalSpacing
         stack.alignment = .leading
@@ -58,15 +60,47 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         presenter.delegate = self
         configurationViews()
+        
+        guard let profile = ProfileService.shared.profile else { return }
+        updateProfileDetails(profile: profile)
+        
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.didChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            self.updateAvatar()
+        }
+        updateAvatar()
     }
-
+    
+    private func updateAvatar() {
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 36, backgroundColor: .clear)
+        avatarAccountImage.kf.indicatorType = .activity
+        avatarAccountImage.kf.setImage(with: presenter.avatarURL(),
+                                       placeholder: UIImage(named: "placeholder.jpeg"),
+                                       options: [.processor(processor), .cacheSerializer(FormatIndicatedCacheSerializer.png)])
+    }
+    
+    private func updateProfileDetails(profile: Profile) {
+        
+        nameAccountLabel.text = profile.fullName
+        nickNameAccountLabel.text = profile.loginName
+        descriptionAccountLabel.text = profile.bio
+        
+    }
     
     private func configurationViews() {
         
+        view.backgroundColor = .ypBlack
+        
         [avatarAccountImage, logoutAccountButton, self.stackView].forEach{$0.translatesAutoresizingMaskIntoConstraints = false; view.addSubview($0)}
-                
+        
         NSLayoutConstraint.activate([
             avatarAccountImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             avatarAccountImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -77,10 +111,11 @@ final class ProfileViewController: UIViewController {
             logoutAccountButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             logoutAccountButton.heightAnchor.constraint(equalToConstant: 44),
             logoutAccountButton.widthAnchor.constraint(equalToConstant: 44),
-        
+            
             nameAccountLabel.heightAnchor.constraint(equalToConstant: 23),
-            nicknameAccountLabel.heightAnchor.constraint(equalToConstant: 18),
+            nickNameAccountLabel.heightAnchor.constraint(equalToConstant: 18),
             descriptionAccountLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 18),
+            
             
             stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -95,13 +130,13 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewPresenterProtocol {
+    
     func goToAuthViewController() {
         guard let window = UIApplication.shared.windows.first else {
             assertionFailure("Invalid window configuration")
             return
         }
-        let viewController = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "SplashViewController")
+        let viewController = SplashViewController()
         window.rootViewController = viewController
     }
     
@@ -114,17 +149,14 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
                                    style: .default) { [weak self] _ in
             guard let self else { return }
             self.presenter.logout()
-            
         }
         
         let cancel = UIAlertAction(title: "Cancel",
                                    style: .cancel) { _ in
             alert.dismiss(animated: true)
         }
-        
         alert.addAction(action)
         alert.addAction(cancel)
-        
         present(alert, animated: true)
     }
 }
