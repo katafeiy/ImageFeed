@@ -22,13 +22,29 @@ final class ImagesListViewController: UIViewController {
             switch result {
             case .success(let photos):
                 DispatchQueue.main.async {
-                    self.photos.append(photos)
+                    self.photos += photos
                     self.tableView.reloadData()
                 }
             case .failure(let error):
-                preconditionFailure("Error \(error.localizedDescription)")
+                preconditionFailure("Error>>> \(error.localizedDescription) ")
                 break
             }
+        }
+    }
+    
+    func updateTableViewAnimated() {
+        
+        let oldCount = photos.count
+        let newCount = imageListService.photos.count
+        
+        photos = imageListService.photos
+        if oldCount != newCount {
+            tableView.performBatchUpdates {
+                let indexPaths = Array(oldCount..<newCount).map { i in
+                    IndexPath(row: i, section: 0)
+                }
+                tableView.insertRows(at: indexPaths, with: .automatic)
+            } completion: { _ in }
         }
     }
     
@@ -45,6 +61,7 @@ final class ImagesListViewController: UIViewController {
             
             let image = UIImage(named: photos[indexPath.row].thumbImageURL ?? "")
             viewController.image = image
+            
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -52,6 +69,7 @@ final class ImagesListViewController: UIViewController {
 }
 
 extension ImagesListViewController: UITableViewDataSource {
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photos.count
@@ -65,14 +83,30 @@ extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath) as? ImagesListCell else { return UITableViewCell() }
         
-        guard let imageListCell = cell as? ImagesListCell else {
-            return UITableViewCell()
+        let isLike = photos[indexPath.row].isLike ?? false
+        let date = photos[indexPath.row].createdAt?.converterForCell() ?? " "
+        let fullDate = date + " " + Date().dateForImageFeed
+        
+        cell.configCell(isLike: isLike, date: fullDate)
+        
+        cell.delegate = self
+        
+        if let string = photos[indexPath.row].thumbImageURL, let url = URL(string: string) {
+            cell.cellImage.kf.indicatorType = .activity
+            cell.cellImage.kf.setImage(with: url, placeholder: UIImage(named: "scribble"))
         }
         
-        imageListCell.configCell(tvc: tableView, indexPath: indexPath)
-        return imageListCell
+        return cell
+    }
+}
+
+extension ImagesListViewController: ImagesListCellDelegate {
+    func didTapLikeButton(on cell: ImagesListCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        photos[indexPath.row].isLike?.toggle()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
@@ -93,7 +127,9 @@ extension ImagesListViewController: UITableViewDelegate {
         guard let imageHeight = photos[indexPath.row].size?.height else { return 0 }
         let imageSize = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let imageCellWidth = tableView.bounds.width - imageSize.left - imageSize.right
+        
         //        let imageWidth = image.size.width
+        
         let half = imageCellWidth / imageWidth
         let imageCellHeight = imageHeight * half + imageSize.top + imageSize.bottom
         return imageCellHeight

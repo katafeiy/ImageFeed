@@ -1,49 +1,36 @@
 import UIKit
-import Kingfisher
+
+protocol ImagesListCellDelegate: AnyObject {
+    func didTapLikeButton(on cell: ImagesListCell)
+}
+
 
 final class ImagesListCell: UITableViewCell {
-    
-    @IBOutlet private var cellImage: UIImageView!
-    @IBOutlet private var likeButton: UIButton!
-    @IBOutlet private var dateLabel: UILabel!
-    @IBOutlet private var gradient: UIImageView!
+    weak var delegate: ImagesListCellDelegate?
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak private var likeButton: UIButton!
+    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak private var gradient: UIImageView!
     
     static let reuseIdentifier = "ImagesListCell"
     private let gL = CAGradientLayer()
-    private lazy var year = Date()
     
-    private lazy var dateFormatted: DateFormatter = {
-    
-        let formatted = DateFormatter()
-        formatted.locale = Locale(identifier: "ru_RU")
-        formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
-        return formatted
-
-    }()
-    
-    func cellImageURL(indexPath: IndexPath) -> URL? {
-        guard
-            let cellImageURL = ImagesListService.shared.photos[indexPath.row].thumbImageURL,
-            let url = URL(string: cellImageURL)
-        else { return nil }
-        return url
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellImage.image = nil
+        gradient.image = nil
     }
     
-    func configCell(tvc: UITableView, indexPath: IndexPath) {
-        
-        cellImage.kf.indicatorType = .activity
-        cellImage.kf.setImage(with: cellImageURL(indexPath: indexPath),
-                              placeholder: UIImage(named: "scribble")) { _ in
-        
-            tvc.reloadRows(at: [indexPath], with: .automatic)
-        }
-        
-        let likeOnImage = ImagesListService.shared.photos[indexPath.row].isLike ?? false ? UIImage.onActive : UIImage.offActive
-        likeButton.setImage(likeOnImage, for: .normal)
-        
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        setupCell()
+    }
+    
+    private func setupCell() {
+        backgroundColor = .clear
+        selectionStyle = .none
         cellImage.layer.cornerRadius = 16
         cellImage.layer.masksToBounds = true
-        
         gradient.layer.cornerRadius = 16
         gradient.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
@@ -51,8 +38,19 @@ final class ImagesListCell: UITableViewCell {
         gL.frame = gradient.bounds
         gradient.layer.addSublayer(gL)
         
-        let date = ImagesListService.shared.photos[indexPath.row].createdAt
-        dateLabel.text = dateFormatted.string(from: date ?? Date()) + " " + year.dateForImageFeed
+        likeButton.addTarget(self, action: #selector(likeButtonTappedAction), for: .touchUpInside)
+    }
+
+    func configCell(isLike: Bool, date: String) {
+        
+        let likeOnImage = isLike ? UIImage.onActive : UIImage.offActive
+        likeButton.setImage(likeOnImage, for: .normal)
+       
+        dateLabel.text = date 
+    }
+    
+    @objc private func likeButtonTappedAction() {
+        delegate?.didTapLikeButton(on: self)
     }
 }
 
@@ -64,5 +62,15 @@ extension Date {
         formatted.setLocalizedDateFormatFromTemplate("yyyy")
         return formatted.string(from: self)
         
-    }    
+    }
+    
+    func converterForCell() -> String {
+    
+        let formatted = DateFormatter()
+        formatted.locale = Locale(identifier: "ru_RU")
+        formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
+        let string = formatted.string(from: self)
+        return string
+
+    }
 }

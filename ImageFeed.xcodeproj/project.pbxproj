@@ -36,6 +36,7 @@
 		129A7C132CAC1F8500B7B241 /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A7C122CAC1F8500B7B241 /* ImagesListService.swift */; };
 		12C3C9862C9B5B3D007C8FDA /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */; };
 		12ED8E232CB12C3A00F79B60 /* ImageListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED8E222CB12C3A00F79B60 /* ImageListViewPresenter.swift */; };
+		12ED8E252CB186E600F79B60 /* ImagesListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED8E242CB186E600F79B60 /* ImagesListModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		129A7C122CAC1F8500B7B241 /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 		12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		12ED8E222CB12C3A00F79B60 /* ImageListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewPresenter.swift; sourceTree = "<group>"; };
+		12ED8E242CB186E600F79B60 /* ImagesListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				12ED8E222CB12C3A00F79B60 /* ImageListViewPresenter.swift */,
 				123E4CE42C60372800D80884 /* ImagesListCell.swift */,
 				129A7C122CAC1F8500B7B241 /* ImagesListService.swift */,
+				12ED8E242CB186E600F79B60 /* ImagesListModels.swift */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				1278A48E2CA6C4720028971F /* TabBarController.swift in Sources */,
 				1276105B2C5D07DE0003AB76 /* SceneDelegate.swift in Sources */,
 				1280A7732C9C9DCE00723279 /* NetworkError.swift in Sources */,
+				12ED8E252CB186E600F79B60 /* ImagesListModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
