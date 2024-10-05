@@ -4,14 +4,14 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     private let service: ImagesListServiceProtocol
     private(set) var photos: [Photo] = []
 
-    private weak var view: ImagesListViewControllerProtocol?
+    private weak var delegate: ImagesListViewControllerProtocol?
 
     init(service: ImagesListServiceProtocol = ImagesListService.shared)  {
         self.service = service
     }
 
     func attach(_ view: ImagesListViewControllerProtocol) {
-        self.view = view
+        self.delegate = view
     }
 
     func viewDidLoad() {
@@ -31,7 +31,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
             case .success(let photos):
                 DispatchQueue.main.async {
                     self.photos += photos
-                    self.view?.reloadTableView()
+                    self.delegate?.reloadTableView()
                 }
             case .failure(let error):
                 preconditionFailure("Error>>> \(error.localizedDescription) ")
