@@ -42,7 +42,7 @@ struct ImageUrlsResult: Decodable {
 
 final class ImagesListService {
     
-    private let shared = ImagesListService()
+    static let shared = ImagesListService()
     private init() {}
     
     static let didChangeNotification: Notification.Name = .init("ImagesListServiceDidChange")
@@ -64,35 +64,37 @@ final class ImagesListService {
         return request
     }
     
-    func fetchPhotoNextPage() {
+    func fetchPhotoNextPage(completion: @escaping (Result<Photo, Error>) -> Void) {
         
         assert(Thread.isMainThread)
         guard task == nil else { return }
         
         let page = lastLoadedPage == nil ? 1 : lastLoadedPage! + 1
         guard let token = OAuth2TokenStorage.token else { return }
-
+        
         guard let request = loadPhotosRequest(token, page: String(page), perPage: perPage) else { return }
         
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<PhotoResult, Error>) in
             guard let self else { return }
-
+            
             switch result {
             case .success(let photos):
                 let newPhotos = Photo(id: photos.id,
-                                     size: CGSize(width: Double(photos.width ?? 0), height: Double(photos.height ?? 0)),
-                                     createdAt: photos.createdAt,
-                                     welcomeDescription: photos.welcomeDescription,
-                                     thumbImageURL: photos.ImageURL?.thumb,
-                                     largeImageURL: photos.ImageURL?.large,
-                                     isLike: photos.isLike)
+                                      size: CGSize(width: Double(photos.width ?? 0), height: Double(photos.height ?? 0)),
+                                      createdAt: photos.createdAt,
+                                      welcomeDescription: photos.welcomeDescription,
+                                      thumbImageURL: photos.ImageURL?.thumb,
+                                      largeImageURL: photos.ImageURL?.large,
+                                      isLike: photos.isLike)
                 self.photos.append(newPhotos)
                 self.lastLoadedPage = page
                 NotificationCenter.default.post(name: ImagesListService.didChangeNotification,
                                                 object: self,
                                                 userInfo: ["URL": newPhotos])
-            case .failure:
-                print("[fetchPhotoNextPage -> objectTask]:[Incorrect photos]: [Error: Invalid response]")
+                completion(.success(newPhotos))
+            case .failure(let error):
+                print("[fetchPhotoNextPage -> objectTask]:[Incorrect photos]: [Error: \(error.localizedDescription) ]")
+                completion(.failure(error))
                 break
             }
             self.task = nil
@@ -102,3 +104,10 @@ final class ImagesListService {
     }
 }
 
+protocol ImagesListServiceProtocol {
+    
+    func getImagesList(completion: @escaping (Result<Photo, Error>) -> Void)
+    func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?
+    var photos: [Photo] { get }
+    
+}

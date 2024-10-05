@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 final class ImagesListCell: UITableViewCell {
     
@@ -20,11 +21,24 @@ final class ImagesListCell: UITableViewCell {
 
     }()
     
-    func configCell(image: UIImage, likeOn: Bool) {
-        
-        cellImage.image = image
+    func cellImageURL(indexPath: IndexPath) -> URL? {
+        guard
+            let cellImageURL = ImagesListService.shared.photos[indexPath.row].thumbImageURL,
+            let url = URL(string: cellImageURL)
+        else { return nil }
+        return url
+    }
     
-        let likeOnImage = likeOn ? UIImage.onActive : UIImage.offActive
+    func configCell(tvc: UITableView, indexPath: IndexPath) {
+        
+        cellImage.kf.indicatorType = .activity
+        cellImage.kf.setImage(with: cellImageURL(indexPath: indexPath),
+                              placeholder: UIImage(named: "scribble")) { _ in
+        
+            tvc.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        let likeOnImage = ImagesListService.shared.photos[indexPath.row].isLike ?? false ? UIImage.onActive : UIImage.offActive
         likeButton.setImage(likeOnImage, for: .normal)
         
         cellImage.layer.cornerRadius = 16
@@ -37,7 +51,8 @@ final class ImagesListCell: UITableViewCell {
         gL.frame = gradient.bounds
         gradient.layer.addSublayer(gL)
         
-        dateLabel.text = dateFormatted.string(from: Date()) + " " + year.dateForImageFeed
+        let date = ImagesListService.shared.photos[indexPath.row].createdAt
+        dateLabel.text = dateFormatted.string(from: date ?? Date()) + " " + year.dateForImageFeed
     }
 }
 
