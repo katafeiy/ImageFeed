@@ -6,6 +6,7 @@ protocol ImagesListCellDelegate: AnyObject {
 
 
 final class ImagesListCell: UITableViewCell {
+    
     weak var delegate: ImagesListCellDelegate?
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak private var likeButton: UIButton!
@@ -27,6 +28,7 @@ final class ImagesListCell: UITableViewCell {
     }
     
     private func setupCell() {
+        
         backgroundColor = .clear
         selectionStyle = .none
         cellImage.layer.cornerRadius = 16

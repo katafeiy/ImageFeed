@@ -37,6 +37,7 @@
 		12C3C9862C9B5B3D007C8FDA /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */; };
 		12ED8E232CB12C3A00F79B60 /* ImageListViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED8E222CB12C3A00F79B60 /* ImageListViewPresenter.swift */; };
 		12ED8E252CB186E600F79B60 /* ImagesListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED8E242CB186E600F79B60 /* ImagesListModels.swift */; };
+		12ED8E282CB1D8F000F79B60 /* ImagesListServiceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ED8E272CB1D8F000F79B60 /* ImagesListServiceSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		12C3C9852C9B5B26007C8FDA /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		12ED8E222CB12C3A00F79B60 /* ImageListViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewPresenter.swift; sourceTree = "<group>"; };
 		12ED8E242CB186E600F79B60 /* ImagesListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListModels.swift; sourceTree = "<group>"; };
+		12ED8E272CB1D8F000F79B60 /* ImagesListServiceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListServiceSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				123E4CE42C60372800D80884 /* ImagesListCell.swift */,
 				129A7C122CAC1F8500B7B241 /* ImagesListService.swift */,
 				12ED8E242CB186E600F79B60 /* ImagesListModels.swift */,
+				12ED8E262CB1D8A300F79B60 /* ImagesListServiceSpy */,
 			);
 			path = ImageList;
 			sourceTree = "<group>";
@@ -193,6 +196,14 @@
 				12734FC42C91863300CB6448 /* SplashViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		12ED8E262CB1D8A300F79B60 /* ImagesListServiceSpy */ = {
+			isa = PBXGroup;
+			children = (
+				12ED8E272CB1D8F000F79B60 /* ImagesListServiceSpy.swift */,
+			);
+			path = ImagesListServiceSpy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1276105D2C5D07DE0003AB76 /* ImagesListViewController.swift in Sources */,
+				12ED8E282CB1D8F000F79B60 /* ImagesListServiceSpy.swift in Sources */,
 				12734FC72C91E87700CB6448 /* ProfileViewPresenter.swift in Sources */,
 				123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */,
 				12C3C9862C9B5B3D007C8FDA /* UIBlockingProgressHUD.swift in Sources */,

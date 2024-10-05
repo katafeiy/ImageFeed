@@ -1,13 +1,12 @@
 import Foundation
 
 
-final class ImagesListService {
+final class ImagesListService: ImagesListServiceProtocol {
     
     static let shared = ImagesListService()
     private init() {}
     
     static let didChangeNotification: Notification.Name = .init("ImagesListServiceDidChange")
-//    private(set) var photos: [Photo] = []
     private var lastLoadedPage: Int?
     private let perPage = "10"
     private var task: URLSessionTask?
@@ -74,14 +73,10 @@ final class ImagesListService {
                               isLike: photoResult.isLike ?? false)
         return newPhotos
     }
-    
 }
-
+ 
 protocol ImagesListServiceProtocol {
-    
-    func getImagesList(completion: @escaping (Result<Photo, Error>) -> Void)
+    func fetchPhotoNextPage(completion: @escaping (Result<[Photo], Error>) -> Void)
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?
-    var photos: [Photo] { get }
-    
 }
 
