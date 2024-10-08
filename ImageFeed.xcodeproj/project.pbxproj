@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12062C222CA68F5300F035AC /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 12062C212CA68F5300F035AC /* SwiftKeychainWrapper */; };
 		1212B4B12C7D11FC00E0AE46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127610632C5D07DF0003AB76 /* LaunchScreen.storyboard */; };
+		1230C3B62CB55CCF00AFCA2A /* ProfileModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230C3B52CB55CCF00AFCA2A /* ProfileModels.swift */; };
 		123E4CE52C60372800D80884 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E4CE42C60372800D80884 /* ImagesListCell.swift */; };
 		125E955A2CA54C8F00F21728 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 125E95592CA54C8F00F21728 /* Kingfisher */; };
 		12615AF42C678F0F00D95997 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12615AF32C678F0F00D95997 /* ProfileViewController.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		120630C82CB0095B00897332 /* ImageFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1230C3B52CB55CCF00AFCA2A /* ProfileModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModels.swift; sourceTree = "<group>"; };
 		123E4CE42C60372800D80884 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		12615AF32C678F0F00D95997 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		12716F4E2CA000FC0082BE53 /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				12734FC62C91E87700CB6448 /* ProfileViewPresenter.swift */,
 				12716F4E2CA000FC0082BE53 /* ProfileImageService.swift */,
 				1280A76E2C9C27C200723279 /* ProfileService.swift */,
+				1230C3B52CB55CCF00AFCA2A /* ProfileModels.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				1278B6892C8B0D76005E3B75 /* OAuth2TokenStorage.swift in Sources */,
 				1278A48E2CA6C4720028971F /* TabBarController.swift in Sources */,
 				1276105B2C5D07DE0003AB76 /* SceneDelegate.swift in Sources */,
+				1230C3B62CB55CCF00AFCA2A /* ProfileModels.swift in Sources */,
 				1280A7732C9C9DCE00723279 /* NetworkError.swift in Sources */,
 				12ED8E252CB186E600F79B60 /* ImagesListModels.swift in Sources */,
 			);

@@ -10,21 +10,7 @@ final class ProfileImageService {
     private(set) var avatarURL: String?
     private var task: URLSessionTask?
     
-    struct UserResult: Codable {
-        let profileImage: ImageURL?
-        
-        enum CodingKeys: String, CodingKey {
-            case profileImage = "profile_image"
-        }
-    }
     
-    struct ImageURL: Codable {
-        let small: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case small = "small"
-        }
-    }
     
     private func loadProfileImageRequest(_ token: String?, _ username: String?) -> URLRequest? {
         

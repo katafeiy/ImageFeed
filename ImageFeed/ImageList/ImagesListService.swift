@@ -11,6 +11,7 @@ final class ImagesListService: ImagesListServiceProtocol {
     private let perPage = "10"
     private var task: URLSessionTask?
     
+    
     private let dateFormatter = ISO8601DateFormatter()
     
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest? {
@@ -74,7 +75,13 @@ final class ImagesListService: ImagesListServiceProtocol {
         return newPhotos
     }
 }
- 
+
+func changeLike(photoId: String?, isLike: Bool?, _ completion: @escaping (Result<Void, Error>) -> Void) {
+    
+    
+    
+}
+
 protocol ImagesListServiceProtocol {
     func fetchPhotoNextPage(completion: @escaping (Result<[Photo], Error>) -> Void)
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?

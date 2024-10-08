@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: Модель для декодирования данных фотографий
+
 struct unSplashPhoto {
     let photo: PhotoResult?
 }
