@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     private let service: ImagesListServiceProtocol
@@ -21,7 +21,38 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     func paginateNextPage() {
         loadNextPage()
     }
-
+    
+    func updateLike(indexPath: IndexPath) {
+        
+        photos[indexPath.row].isLike?.toggle()
+        
+        let id = photos[indexPath.row].id
+        
+        let isLike = photos[indexPath.row].isLike
+        
+        UIBlockingProgressHUD.show()
+        service.changeLike(photoId: id, isLike: isLike) { [weak self] result in
+            guard let self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let status):
+                    self.photos[indexPath.row].isLike = status
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                    self.photos[indexPath.row].isLike?.toggle()
+                }
+                self.delegate?.reloadTableView()
+                UIBlockingProgressHUD.dismiss()
+            }
+        }
+    }
+    
+    func changeLike(_ id: String,_ isLike: Bool) {
+        
+        
+    }
+    
     /// обновление лайка
 
     private func loadNextPage() {
@@ -44,6 +75,6 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
 protocol ImagesListViewPresenterProtocol {
     func viewDidLoad()
     func paginateNextPage()
-
+    func updateLike(indexPath: IndexPath)
     var photos: [Photo] { get }
 }

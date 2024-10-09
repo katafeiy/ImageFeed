@@ -1,5 +1,4 @@
-import Foundation
-
+import UIKit
 
 final class ImagesListService: ImagesListServiceProtocol {
     
@@ -10,8 +9,7 @@ final class ImagesListService: ImagesListServiceProtocol {
     private var lastLoadedPage: Int?
     private let perPage = "10"
     private var task: URLSessionTask?
-    
-    
+
     private let dateFormatter = ISO8601DateFormatter()
     
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest? {
@@ -74,15 +72,68 @@ final class ImagesListService: ImagesListServiceProtocol {
                               isLike: photoResult.isLike ?? false)
         return newPhotos
     }
-}
-
-func changeLike(photoId: String?, isLike: Bool?, _ completion: @escaping (Result<Void, Error>) -> Void) {
     
+    func changeLike(photoId: String?, isLike: Bool! = false, _ completion: @escaping (Result<Bool, Error>) -> Void) {
+        
+        assert(Thread.isMainThread)
+        task?.cancel()
+        
+        guard let token = OAuth2TokenStorage.token, let photoId else { return }
+       
+        guard let request = isLike ? postLikeRequest(token, photoId) : deleteLikeRequest(token, photoId) else { return }
+         
+        let task = URLSession.shared.objectTask(for: request) { (result: Result<unSplashPhoto, Error>) in
+            
+            self.task = nil
+            
+            switch result {
+                
+            case .success(let photoResult):
+                
+                let isLike = photoResult.photo?.isLike ?? false
+                print("Is like: \(String(describing: isLike))")
+                completion(.success(isLike))
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        self.task = task
+        task.resume()
+    }
     
+    // Устанавливаем лайк
+    
+    func postLikeRequest(_ token: String, _ photoId: String) -> URLRequest? {
+        
+        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+        
+        var requestLikeOn = URLRequest.setHTTPRequest(
+            path: "photos/\(photoId)/like",
+            httpMethod: "POST",
+            url: url)
+        requestLikeOn?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return requestLikeOn
+    }
+    
+    // Снимаем лайк
+    
+    func deleteLikeRequest(_ token: String, _ photoId: String) -> URLRequest? {
+        
+        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+        
+        var requestLikeOff = URLRequest.setHTTPRequest(
+            path: "photos/\(photoId)/like",
+            httpMethod: "DELETE",
+            url: url)
+        requestLikeOff?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return requestLikeOff
+    }
     
 }
 
 protocol ImagesListServiceProtocol {
+    func changeLike(photoId: String?, isLike: Bool!, _ completion: @escaping (Result<Bool, Error>) -> Void)
     func fetchPhotoNextPage(completion: @escaping (Result<[Photo], Error>) -> Void)
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?
 }

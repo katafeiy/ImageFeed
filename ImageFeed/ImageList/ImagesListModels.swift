@@ -2,8 +2,8 @@ import Foundation
 
 // MARK: Модель для декодирования данных фотографий
 
-struct unSplashPhoto {
-    let photo: PhotoResult?
+struct unSplashPhoto: Decodable {
+    var photo: PhotoResult?
 }
 
 struct PhotoResult: Decodable {
@@ -13,7 +13,7 @@ struct PhotoResult: Decodable {
     let createdAt: String?
     let welcomeDescription: String?
     let ImageURL: ImageUrlsResult?
-    let isLike: Bool?
+    var isLike: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"

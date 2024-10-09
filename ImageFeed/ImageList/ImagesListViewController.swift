@@ -84,10 +84,11 @@ extension ImagesListViewController: UITableViewDataSource {
 }
 
 extension ImagesListViewController: ImagesListCellDelegate {
+    
     func didTapLikeButton(on cell: ImagesListCell) {
+        
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        // photos[indexPath.row].isLike?.toggle()
-        /// TODO: локальное изменение данных (в массиве фото + тебе сетевой запрос обновления лайка)
+        presenter?.updateLike(indexPath: indexPath)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
