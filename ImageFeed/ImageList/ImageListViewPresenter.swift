@@ -22,6 +22,8 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         loadNextPage()
     }
     
+    // Обновление лайка
+    
     func updateLike(indexPath: IndexPath) {
         
         photos[indexPath.row].isLike?.toggle()
@@ -32,14 +34,15 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         
         UIBlockingProgressHUD.show()
         service.changeLike(photoId: id, isLike: isLike) { [weak self] result in
+            
             guard let self else { return }
             
             DispatchQueue.main.async {
                 switch result {
-                case .success(let status):
-                    self.photos[indexPath.row].isLike = status
-                case .failure(let failure):
-                    print(failure.localizedDescription)
+                case .success(let likeStatus):
+                    self.photos[indexPath.row].isLike = likeStatus
+                case .failure(let error):
+                    print(error.localizedDescription)
                     self.photos[indexPath.row].isLike?.toggle()
                 }
                 self.delegate?.reloadTableView()
@@ -48,13 +51,8 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         }
     }
     
-    func changeLike(_ id: String,_ isLike: Bool) {
-        
-        
-    }
+    // Обновление ленты фотографий
     
-    /// обновление лайка
-
     private func loadNextPage() {
         service.fetchPhotoNextPage { [weak self] result in
             guard let self else { return }
@@ -65,7 +63,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
                     self.delegate?.reloadTableView()
                 }
             case .failure(let error):
-                preconditionFailure("Error>>> \(error.localizedDescription) ")
+                preconditionFailure("Error>>> \(error.localizedDescription)")
                 break
             }
         }

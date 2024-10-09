@@ -78,7 +78,6 @@ extension ImagesListViewController: UITableViewDataSource {
             cell.cellImage.kf.indicatorType = .activity
             cell.cellImage.kf.setImage(with: url, placeholder: UIImage.scribble)
         }
-        
         return cell
     }
 }
@@ -86,7 +85,6 @@ extension ImagesListViewController: UITableViewDataSource {
 extension ImagesListViewController: ImagesListCellDelegate {
     
     func didTapLikeButton(on cell: ImagesListCell) {
-        
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         presenter?.updateLike(indexPath: indexPath)
         tableView.reloadRows(at: [indexPath], with: .automatic)
