@@ -55,5 +55,11 @@ final class ProfileImageService {
         self.task = task
         task.resume()
     }
+    
+    func eraseProfileImage() {
+        avatarURL = nil
+        task?.cancel()
+        task = nil
+    }    
 }
 

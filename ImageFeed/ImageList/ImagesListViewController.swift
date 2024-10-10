@@ -34,8 +34,8 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
             }
             
             let photos = presenter.photos
-            let image = UIImage(named: photos[indexPath.row].thumbImageURL ?? "")
-            viewController.image = image
+            let imageURL = photos[indexPath.row].largeImageURL ?? ""
+            viewController.fullImageURL = URL(string: imageURL)
             
         } else {
             super.prepare(for: segue, sender: sender)
