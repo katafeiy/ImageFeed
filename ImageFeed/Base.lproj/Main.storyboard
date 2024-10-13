@@ -54,6 +54,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="402" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble" translatesAutoresizingMaskIntoConstraints="NO" id="sFc-Ov-308">
+                                                    <rect key="frame" x="159.66666666666666" y="121" width="83" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="M1K-QQ-v4F"/>
+                                                        <constraint firstAttribute="width" constant="83" id="mdn-jV-hh1"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="dI8-xh-UfJ" userLabel="Cell Image">
                                                     <rect key="frame" x="16" y="4" width="370" height="309"/>
                                                 </imageView>
@@ -88,11 +95,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="dI8-xh-UfJ" secondAttribute="bottom" constant="4" id="Acm-FE-cKb"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="leading" secondItem="7hf-uN-uHF" secondAttribute="leading" constant="16" id="GEZ-hf-sEk"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="trailing" secondItem="VrW-uZ-Vmg" secondAttribute="trailing" id="OV6-iF-Inh"/>
+                                                <constraint firstItem="sFc-Ov-308" firstAttribute="centerY" secondItem="7hf-uN-uHF" secondAttribute="centerY" id="YDG-vK-HOi"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="bottom" secondItem="QKE-T3-m0B" secondAttribute="bottom" id="YSc-9x-gCk"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0iz-yK-5ga" secondAttribute="trailing" constant="8" id="Zpb-U0-egJ"/>
                                                 <constraint firstItem="VrW-uZ-Vmg" firstAttribute="top" secondItem="dI8-xh-UfJ" secondAttribute="top" id="cTj-xK-hgi"/>
                                                 <constraint firstAttribute="trailing" secondItem="dI8-xh-UfJ" secondAttribute="trailing" constant="16" id="dTm-Bc-2OQ"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="trailing" secondItem="QKE-T3-m0B" secondAttribute="trailing" id="gmx-JE-3eq"/>
+                                                <constraint firstItem="sFc-Ov-308" firstAttribute="centerX" secondItem="7hf-uN-uHF" secondAttribute="centerX" id="iQn-Om-7Z0"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="bottom" secondItem="0iz-yK-5ga" secondAttribute="bottom" constant="8" id="ul9-n9-5mf"/>
                                                 <constraint firstItem="dI8-xh-UfJ" firstAttribute="top" secondItem="7hf-uN-uHF" secondAttribute="top" constant="4" id="xS4-YE-vKK"/>
                                                 <constraint firstItem="0iz-yK-5ga" firstAttribute="leading" secondItem="dI8-xh-UfJ" secondAttribute="leading" constant="8" id="yhg-f4-7DZ"/>
@@ -104,6 +113,7 @@
                                             <outlet property="dateLabel" destination="0iz-yK-5ga" id="bH3-Z1-7Dz"/>
                                             <outlet property="gradient" destination="QKE-T3-m0B" id="fIR-qa-unT"/>
                                             <outlet property="likeButton" destination="VrW-uZ-Vmg" id="rj2-Zy-De6"/>
+                                            <outlet property="placholderImage" destination="sFc-Ov-308" id="7jV-3n-iiB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -254,6 +264,14 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fyn-lL-ASs">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scribble" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-1d-cev">
+                                        <rect key="frame" x="159.66666666666666" y="399.66666666666669" width="83" height="75"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="1r7-hQ-HV3"/>
+                                            <constraint firstAttribute="width" constant="83" id="Ee3-BG-HNE"/>
+                                        </constraints>
+                                    </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="VtU-3h-dEB">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -261,6 +279,10 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="YP Background"/>
+                                <constraints>
+                                    <constraint firstItem="Z6x-1d-cev" firstAttribute="centerX" secondItem="l1e-qY-GTG" secondAttribute="centerX" id="PzE-Dn-ttF"/>
+                                    <constraint firstItem="Z6x-1d-cev" firstAttribute="centerY" secondItem="l1e-qY-GTG" secondAttribute="centerY" id="jlZ-KC-JK7"/>
+                                </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="NDj-h0-tRB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="l1e-qY-GTG"/>
                                 <connections>
@@ -344,6 +366,7 @@
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="nav_back_button" width="24" height="24"/>
         <image name="offActive" width="42" height="42"/>
+        <image name="scribble" width="83" height="75"/>
         <image name="tabEditorialActive" width="30" height="30"/>
         <namedColor name="YP Background">
             <color red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

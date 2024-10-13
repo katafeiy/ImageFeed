@@ -76,7 +76,7 @@ extension ImagesListViewController: UITableViewDataSource {
         
         if let string = photos[indexPath.row].thumbImageURL, let url = URL(string: string) {
             cell.cellImage.kf.indicatorType = .activity
-            cell.cellImage.kf.setImage(with: url, placeholder: UIImage.scribble)
+            cell.cellImage.kf.setImage(with: url)
         }
         return cell
     }

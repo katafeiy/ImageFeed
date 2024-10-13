@@ -8,6 +8,7 @@ protocol ImagesListCellDelegate: AnyObject {
 final class ImagesListCell: UITableViewCell {
     
     weak var delegate: ImagesListCellDelegate?
+    @IBOutlet weak var placholderImage: UIImageView!
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak private var likeButton: UIButton!
     @IBOutlet weak private var dateLabel: UILabel!
@@ -28,6 +29,9 @@ final class ImagesListCell: UITableViewCell {
     }
     
     private func setupCell() {
+        placholderImage.contentMode = .scaleAspectFit
+        placholderImage.backgroundColor = .clear
+        placholderImage.clipsToBounds = true
         
         backgroundColor = .clear
         selectionStyle = .none

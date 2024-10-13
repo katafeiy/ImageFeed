@@ -28,5 +28,6 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
         ProfileImageService.shared.eraseProfileImage()
         ImagesListService.shared.eraseImageListService()
         delegate?.goToAuthViewController()
+        NotificationCenter.default.post(name: .init(rawValue: "removePhotoArrayObserver"), object: nil)
     }
 }

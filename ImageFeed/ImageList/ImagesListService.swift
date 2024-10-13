@@ -136,10 +136,6 @@ final class ImagesListService: ImagesListServiceProtocol {
         task = nil
     }
     
-    func eraseArray(completion: @escaping ()->()) {
-//        photos.removeAll()
-        completion()
-    }
 }
 
 protocol ImagesListServiceProtocol {
@@ -147,6 +143,5 @@ protocol ImagesListServiceProtocol {
     func fetchPhotoNextPage(completion: @escaping (Result<[Photo], Error>) -> Void)
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?
     func eraseImageListService()
-    func eraseArray(completion: @escaping ()->())
 }
 

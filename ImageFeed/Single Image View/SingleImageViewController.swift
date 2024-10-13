@@ -47,7 +47,7 @@ class SingleImageViewController: UIViewController {
         
         UIBlockingProgressHUD.show()
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: fullImageURL, placeholder: UIImage.scribble) { [weak self] result in
+        imageView.kf.setImage(with: fullImageURL) { [weak self] result in
             UIBlockingProgressHUD.dismiss()
             guard let self else { return }
             switch result {

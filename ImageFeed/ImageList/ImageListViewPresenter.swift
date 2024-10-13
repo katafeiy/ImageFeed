@@ -8,6 +8,11 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     
     init(service: ImagesListServiceProtocol = ImagesListService.shared)  {
         self.service = service
+        NotificationCenter.default.addObserver(self, selector: #selector(removePhotoArrayObserver(_:)), name: .init(rawValue: "removePhotoArrayObserver"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func attach(_ view: ImagesListViewControllerProtocol) {
@@ -22,7 +27,13 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
         loadNextPage()
     }
     
-//   self.photos.removeAll()
+    @objc private func removePhotoArrayObserver(_ notification: Notification) {
+//        guard let object = notification.object as? Bool else { return }
+        
+        photos.removeAll()
+        print("Array removed")
+    }
+    
     
     // Обновление лайка
     
