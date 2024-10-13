@@ -113,7 +113,7 @@
                                             <outlet property="dateLabel" destination="0iz-yK-5ga" id="bH3-Z1-7Dz"/>
                                             <outlet property="gradient" destination="QKE-T3-m0B" id="fIR-qa-unT"/>
                                             <outlet property="likeButton" destination="VrW-uZ-Vmg" id="rj2-Zy-De6"/>
-                                            <outlet property="placholderImage" destination="sFc-Ov-308" id="7jV-3n-iiB"/>
+                                            <outlet property="placeholderImage" destination="sFc-Ov-308" id="7jV-3n-iiB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
