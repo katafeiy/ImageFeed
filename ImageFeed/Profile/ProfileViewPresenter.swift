@@ -26,6 +26,7 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
         ProfileLogoutService.shared.erase()
         ProfileService.shared.eraseProfile()
         ProfileImageService.shared.eraseProfileImage()
+        ImagesListService.shared.eraseImageListService()
         delegate?.goToAuthViewController()
     }
 }

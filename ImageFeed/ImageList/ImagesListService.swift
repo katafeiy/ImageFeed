@@ -130,19 +130,23 @@ final class ImagesListService: ImagesListServiceProtocol {
         return requestLikeOff
     }
     
-    func eraseImageListService(completion: @escaping () -> Void) {
+    func eraseImageListService() {
         lastLoadedPage = nil
         task?.cancel()
         task = nil
-        completion()
     }
     
+    func eraseArray(completion: @escaping ()->()) {
+//        photos.removeAll()
+        completion()
+    }
 }
 
 protocol ImagesListServiceProtocol {
     func changeLike(photoId: String?, isLike: Bool!, _ completion: @escaping (Result<Bool, Error>) -> Void)
     func fetchPhotoNextPage(completion: @escaping (Result<[Photo], Error>) -> Void)
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest?
-    func eraseImageListService(completion: @escaping () -> Void)
+    func eraseImageListService()
+    func eraseArray(completion: @escaping ()->())
 }
 

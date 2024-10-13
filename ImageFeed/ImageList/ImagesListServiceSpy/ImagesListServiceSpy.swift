@@ -2,6 +2,15 @@ import Foundation
 
 final class ImagesListServiceSpy: ImagesListServiceProtocol {
     
+    func eraseArray(completion: @escaping () -> ()) {
+        completion()
+    }
+    
+    func eraseImageListService() {
+        
+    }
+    
+    
     func changeLike(photoId: String?, isLike: Bool!, _ completion: @escaping (Result<Bool, any Error>) -> Void) {
         completion(.success(true))
     }

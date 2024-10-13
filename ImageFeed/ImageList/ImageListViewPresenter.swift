@@ -3,24 +3,26 @@ import UIKit
 final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     private let service: ImagesListServiceProtocol
     private(set) var photos: [Photo] = []
-
+    
     private weak var delegate: ImagesListViewControllerProtocol?
-
+    
     init(service: ImagesListServiceProtocol = ImagesListService.shared)  {
         self.service = service
     }
-
+    
     func attach(_ view: ImagesListViewControllerProtocol) {
         self.delegate = view
     }
-
+    
     func viewDidLoad() {
         loadNextPage()
     }
-
+    
     func paginateNextPage() {
         loadNextPage()
     }
+    
+//   self.photos.removeAll()
     
     // Обновление лайка
     
