@@ -29,6 +29,7 @@ final class ImagesListCell: UITableViewCell {
     }
     
     private func setupCell() {
+        
         placeholderImage.contentMode = .scaleAspectFit
         placeholderImage.backgroundColor = .clear
         placeholderImage.clipsToBounds = true
