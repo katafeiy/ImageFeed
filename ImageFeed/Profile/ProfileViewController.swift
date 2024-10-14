@@ -141,17 +141,17 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
     }
     
     func showAlert() {
-        let alert = UIAlertController(title: "Выход",
-                                      message: "Хотите выйти?",
+        let alert = UIAlertController(title: "Пока, пока!\n",
+                                      message: "Уверены что хотите выйти?\n",
                                       preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Ok",
+        let action = UIAlertAction(title: "Да",
                                    style: .default) { [weak self] _ in
             guard let self else { return }
             self.presenter.logout()
         }
         
-        let cancel = UIAlertAction(title: "Cancel",
+        let cancel = UIAlertAction(title: "Нет",
                                    style: .cancel) { _ in
             alert.dismiss(animated: true)
         }
