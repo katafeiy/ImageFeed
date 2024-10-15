@@ -15,7 +15,6 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
         tableView.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         
         presenter?.viewDidLoad()
-        
     }
     
     func reloadTableView() {
@@ -73,10 +72,10 @@ extension ImagesListViewController: UITableViewDataSource {
         
         let photos = presenter.photos
         let isLike = photos[indexPath.row].isLike ?? false
-        let date = photos[indexPath.row].createdAt?.converterForCell() ?? " "
-        let fullDate = date + " " + Date().dateForImageFeed
+        let date = photos[indexPath.row].createdAt ?? Date()
+        let dateString = presenter.dateString(date)
         
-        cell.configCell(isLike: isLike, date: fullDate)
+        cell.configCell(isLike: isLike, date: dateString)
         cell.delegate = self
         
         if let string = photos[indexPath.row].thumbImageURL, let url = URL(string: string) {

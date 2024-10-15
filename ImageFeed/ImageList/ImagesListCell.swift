@@ -60,24 +60,3 @@ final class ImagesListCell: UITableViewCell {
         delegate?.didTapLikeButton(on: self)
     }
 }
-
-extension Date {
-    
-    var dateForImageFeed: String {
-        
-        let formatted = DateFormatter()
-        formatted.setLocalizedDateFormatFromTemplate("yyyy")
-        return formatted.string(from: self)
-        
-    }
-    
-    func converterForCell() -> String {
-    
-        let formatted = DateFormatter()
-        formatted.locale = Locale(identifier: "ru_RU")
-        formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
-        let string = formatted.string(from: self)
-        return string
-
-    }
-}

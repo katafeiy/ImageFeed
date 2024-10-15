@@ -77,11 +77,24 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
             }
         }
     }
+    
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
+    public func dateString(_ date: Date) -> String {
+        dateFormatter.string(from: date)
+    }
+    
 }
 
 protocol ImagesListViewPresenterProtocol {
     func viewDidLoad()
     func paginateNextPage()
     func updateLike(indexPath: IndexPath)
+    func dateString(_ date: Date) -> String
     var photos: [Photo] { get }
 }
