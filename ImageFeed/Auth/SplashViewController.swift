@@ -110,8 +110,8 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     func showAlertError() {
         
-        let alert = UIAlertController(title: "Ой что то пошло не так...(\n",
-                                      message: "Не удалось войти в систему\n",
+        let alert = UIAlertController(title: "Что-то пошло не так(",
+                                      message: "Не удалось войти в систему",
                                       preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default) { _ in

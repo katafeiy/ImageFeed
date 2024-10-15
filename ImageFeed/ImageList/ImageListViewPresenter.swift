@@ -38,18 +38,14 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     // Обновление лайка
     
     func updateLike(indexPath: IndexPath) {
-        
+    
         photos[indexPath.row].isLike?.toggle()
-        
         let id = photos[indexPath.row].id
-        
         let isLike = photos[indexPath.row].isLike
-        
-        UIBlockingProgressHUD.show()
+    
+        self.delegate?.showBlockingProgressHUD()
         service.changeLike(photoId: id, isLike: isLike) { [weak self] result in
-            
             guard let self else { return }
-            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let likeStatus):
@@ -59,7 +55,7 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
                     self.photos[indexPath.row].isLike?.toggle()
                 }
                 self.delegate?.reloadTableView()
-                UIBlockingProgressHUD.dismiss()
+                self.delegate?.dismissBlockingProgressHUD()
             }
         }
     }

@@ -32,14 +32,19 @@ final class ImagesListViewController: UIViewController, ImagesListViewController
                 assertionFailure("Invalid segue destination")
                 return
             }
-            
             let photos = presenter.photos
             let imageURL = photos[indexPath.row].largeImageURL ?? ""
             viewController.fullImageURL = URL(string: imageURL)
-            
         } else {
             super.prepare(for: segue, sender: sender)
         }
+    }
+    
+    func showBlockingProgressHUD() {
+        UIBlockingProgressHUD.show()
+    }
+    func dismissBlockingProgressHUD() {
+        UIBlockingProgressHUD.dismiss()
     }
 }
 
@@ -85,9 +90,11 @@ extension ImagesListViewController: UITableViewDataSource {
 extension ImagesListViewController: ImagesListCellDelegate {
     
     func didTapLikeButton(on cell: ImagesListCell) {
+        
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         presenter?.updateLike(indexPath: indexPath)
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        
     }
 }
 
@@ -102,8 +109,8 @@ extension ImagesListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let presenter else { return .zero }
         let photos = presenter.photos
-        guard let imageWidth = photos[indexPath.row].size?.width else { return 0 }
-        guard let imageHeight = photos[indexPath.row].size?.height else { return 0 }
+        guard let imageWidth = photos[indexPath.row].size?.width,
+              let imageHeight = photos[indexPath.row].size?.height else { return 0 }
         let imageSize = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let imageCellWidth = tableView.bounds.width - imageSize.left - imageSize.right
         let half = imageCellWidth / imageWidth
@@ -114,6 +121,8 @@ extension ImagesListViewController: UITableViewDelegate {
 
 protocol ImagesListViewControllerProtocol: AnyObject {
     func reloadTableView()
+    func showBlockingProgressHUD()
+    func dismissBlockingProgressHUD()
 }
 
 

@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: Модель для декодирования данных фотографий
 
-struct unSplashPhoto: Decodable {
+struct UnSplashPhoto: Decodable {
     var photo: PhotoResult?
 }
 

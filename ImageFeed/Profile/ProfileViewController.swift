@@ -141,8 +141,8 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
     }
     
     func showAlert() {
-        let alert = UIAlertController(title: "Пока, пока!\n",
-                                      message: "Уверены что хотите выйти?\n",
+        let alert = UIAlertController(title: "Пока, пока!",
+                                      message: "Уверены что хотите выйти?",
                                       preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Да",

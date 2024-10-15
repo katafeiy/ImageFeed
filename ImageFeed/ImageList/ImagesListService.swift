@@ -45,7 +45,6 @@ final class ImagesListService: ImagesListServiceProtocol {
                 })
                 
                 self.lastLoadedPage = page
-                
                 NotificationCenter.default.post(name: ImagesListService.didChangeNotification,
                                                 object: self,
                                                 userInfo: ["Images": photos])
@@ -79,15 +78,12 @@ final class ImagesListService: ImagesListServiceProtocol {
         task?.cancel()
         
         guard let token = OAuth2TokenStorage.token, let photoId else { return }
-       
         guard let request = isLike ? postLikeRequest(token, photoId) : deleteLikeRequest(token, photoId) else { return }
          
-        let task = URLSession.shared.objectTask(for: request) { (result: Result<unSplashPhoto, Error>) in
+        let task = URLSession.shared.objectTask(for: request) { (result: Result<UnSplashPhoto, Error>) in
             
             self.task = nil
-            
             switch result {
-                
             case .success(let photoResult):
                 
                 let isLike = photoResult.photo?.isLike ?? false
