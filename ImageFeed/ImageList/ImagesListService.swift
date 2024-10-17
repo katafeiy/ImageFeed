@@ -56,7 +56,6 @@ final class ImagesListService: ImagesListServiceProtocol {
             }
             self.task = nil
         }
-        
         self.task = task
         task.resume()
     }
