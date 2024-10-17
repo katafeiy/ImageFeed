@@ -1,35 +1,43 @@
 import UIKit
 
+protocol ImagesListCellDelegate: AnyObject {
+    func didTapLikeButton(on cell: ImagesListCell)
+}
+
+
 final class ImagesListCell: UITableViewCell {
     
-    @IBOutlet private var cellImage: UIImageView!
-    @IBOutlet private var likeButton: UIButton!
-    @IBOutlet private var dateLabel: UILabel!
-    @IBOutlet private var gradient: UIImageView!
+    weak var delegate: ImagesListCellDelegate?
+    @IBOutlet weak var placeholderImage: UIImageView!
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak private var likeButton: UIButton!
+    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak private var gradient: UIImageView!
     
     static let reuseIdentifier = "ImagesListCell"
     private let gL = CAGradientLayer()
-    private lazy var year = Date()
     
-    private lazy var dateFormatted: DateFormatter = {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellImage.image = nil
+        gradient.image = nil
+    }
     
-        let formatted = DateFormatter()
-        formatted.locale = Locale(identifier: "ru_RU")
-        formatted.setLocalizedDateFormatFromTemplate("dd MMMM")
-        return formatted
-
-    }()
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        setupCell()
+    }
     
-    func configCell(image: UIImage, likeOn: Bool) {
+    private func setupCell() {
         
-        cellImage.image = image
-    
-        let likeOnImage = likeOn ? UIImage.onActive : UIImage.offActive
-        likeButton.setImage(likeOnImage, for: .normal)
+        placeholderImage.contentMode = .scaleAspectFit
+        placeholderImage.backgroundColor = .clear
+        placeholderImage.clipsToBounds = true
         
+        backgroundColor = .clear
+        selectionStyle = .none
         cellImage.layer.cornerRadius = 16
         cellImage.layer.masksToBounds = true
-        
         gradient.layer.cornerRadius = 16
         gradient.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
@@ -37,17 +45,18 @@ final class ImagesListCell: UITableViewCell {
         gL.frame = gradient.bounds
         gradient.layer.addSublayer(gL)
         
-        dateLabel.text = dateFormatted.string(from: Date()) + " " + year.dateForImageFeed
+        likeButton.addTarget(self, action: #selector(likeButtonTappedAction), for: .touchUpInside)
     }
-}
 
-extension Date {
+    func configCell(isLike: Bool, date: String) {
+        
+        let likeOnImage = isLike ? UIImage.onActive : UIImage.offActive
+        likeButton.setImage(likeOnImage, for: .normal)
+       
+        dateLabel.text = date 
+    }
     
-    var dateForImageFeed: String {
-        
-        let formatted = DateFormatter()
-        formatted.setLocalizedDateFormatFromTemplate("yyyy")
-        return formatted.string(from: self)
-        
-    }    
+    @objc private func likeButtonTappedAction() {
+        delegate?.didTapLikeButton(on: self)
+    }
 }

@@ -22,8 +22,12 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
     }
     
     func logout() {
-        OAuth2Service.shared.logoutSplash()
         OAuth2TokenStorage.clear()
+        ProfileLogoutService.shared.erase()
+        ProfileService.shared.eraseProfile()
+        ProfileImageService.shared.eraseProfileImage()
+        ImagesListService.shared.eraseImageListService()
         delegate?.goToAuthViewController()
+        NotificationCenter.default.post(name: .init(rawValue: "removePhotoArrayObserver"), object: nil)
     }
 }
