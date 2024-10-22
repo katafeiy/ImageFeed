@@ -157,7 +157,7 @@
 				1298D70A2C80503A00272702 /* Constants.swift */,
 				12F8947D2CC7A0BE008B8D5A /* AuthHelper.swift */,
 				1278B6832C8AEAD4005E3B75 /* Extansion */,
-				12778C6B2C70A81100F3E646 /* Single Image View */,
+				12778C6B2C70A81100F3E646 /* SingleImageView */,
 				12874A972C81DD7F009787A7 /* Auth */,
 				126BA3C22C6A049F001D9CB8 /* Profile */,
 				1286C9D12C60304100DE4787 /* ImageList */,
@@ -169,12 +169,12 @@
 			path = ImageFeed;
 			sourceTree = "<group>";
 		};
-		12778C6B2C70A81100F3E646 /* Single Image View */ = {
+		12778C6B2C70A81100F3E646 /* SingleImageView */ = {
 			isa = PBXGroup;
 			children = (
 				12778C692C7092EC00F3E646 /* SingleImageViewController.swift */,
 			);
-			path = "Single Image View";
+			path = SingleImageView;
 			sourceTree = "<group>";
 		};
 		1278B6832C8AEAD4005E3B75 /* Extansion */ = {
