@@ -15,15 +15,14 @@ final class ProfileImageService {
     private func loadProfileImageRequest(_ token: String?, _ username: String?) -> URLRequest? {
         
         guard
-            let url = Constants.defaultBaseURL,
+//            let url = Constants.defaultBaseURL,
             let token = token,
             let username = username
         else { preconditionFailure("Incorrect URL") }
         
         var request = URLRequest.setHTTPRequest(
             path: "/users/\(username)",
-            httpMethod: "GET",
-            url: url)
+            httpMethod: "GET")
     
         request?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request

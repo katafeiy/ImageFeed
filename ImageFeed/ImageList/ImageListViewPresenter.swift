@@ -29,11 +29,9 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     
     @objc private func removePhotoArrayObserver(_ notification: Notification) {
 //        guard let object = notification.object as? Bool else { return }
-        
         photos.removeAll()
         print("Array removed")
     }
-    
     
     // Обновление лайка
     

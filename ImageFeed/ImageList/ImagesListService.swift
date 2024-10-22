@@ -14,12 +14,11 @@ final class ImagesListService: ImagesListServiceProtocol {
     
     func loadPhotosRequest(_ token: String, page: String, perPage: String) -> URLRequest? {
         
-        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+//        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
         
         var request = URLRequest.setHTTPRequest(
             path: "/photos?page=\(page)&&per_page=\(perPage)",
-            httpMethod: "GET",
-            url: url)
+            httpMethod: "GET")
         request?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
@@ -101,12 +100,11 @@ final class ImagesListService: ImagesListServiceProtocol {
     
     func postLikeRequest(_ token: String, _ photoId: String) -> URLRequest? {
         
-        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+//        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
         
         var requestLikeOn = URLRequest.setHTTPRequest(
             path: "photos/\(photoId)/like",
-            httpMethod: "POST",
-            url: url)
+            httpMethod: "POST")
         requestLikeOn?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return requestLikeOn
     }
@@ -115,12 +113,11 @@ final class ImagesListService: ImagesListServiceProtocol {
     
     func deleteLikeRequest(_ token: String, _ photoId: String) -> URLRequest? {
         
-        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+//        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
         
         var requestLikeOff = URLRequest.setHTTPRequest(
             path: "photos/\(photoId)/like",
-            httpMethod: "DELETE",
-            url: url)
+            httpMethod: "DELETE")
         requestLikeOff?.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return requestLikeOff
     }

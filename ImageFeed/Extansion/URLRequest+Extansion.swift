@@ -4,13 +4,11 @@ extension URLRequest {
     
     static func setHTTPRequest(
         path: String,
-        httpMethod: String,
-        url: URL = {
-            guard let url = Constants.defaultBaseURL else { preconditionFailure("IncorrectURL") }
-            return url
-        }()
+        httpMethod: String
     ) -> URLRequest? {
-        guard let url = URL(string: path, relativeTo: url)
+        
+        let urlDefault: URL = AuthConfiguration.standard.defaultBaseURL
+        guard let url = URL(string: path, relativeTo: urlDefault)
         else {
             return nil
         }

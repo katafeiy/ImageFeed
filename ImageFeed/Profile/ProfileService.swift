@@ -13,12 +13,11 @@ final class ProfileService {
     
     private func loadProfileRequest(_ token: String?) -> URLRequest? {
         
-        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
+//        guard let url = Constants.defaultBaseURL else { preconditionFailure("Incorrect URL") }
         
         var request = URLRequest.setHTTPRequest(
             path: "/me",
-            httpMethod: "GET",
-            url: url)
+            httpMethod: "GET")
         
         guard let token else { preconditionFailure("Incorrect token") }
     
