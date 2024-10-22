@@ -86,7 +86,6 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     public func dateString(_ date: Date) -> String {
         dateFormatter.string(from: date)
     }
-    
 }
 
 protocol ImagesListViewPresenterProtocol {
