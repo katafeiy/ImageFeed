@@ -14,10 +14,8 @@ final class ImagesListTest: XCTestCase {
         
         viewController.viewDidLoad()
         
-        presenter.photos = [.init(id: "1", size: .init(width: 1, height: 1), createdAt: .init(timeIntervalSince1970: 1), welcomeDescription: "", thumbImageURL: .init(""), largeImageURL: .init(""))]
-        
         XCTAssertTrue(presenter.testViewDidLoadCalled)
-        XCTAssertFalse(presenter.photos.isEmpty)
+        
     }
     
     func testArrayIsNotEmpty() {
