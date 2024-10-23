@@ -46,7 +46,7 @@ final class ImagesListCell: UITableViewCell {
         gradient.layer.addSublayer(gL)
         
         likeButton.addTarget(self, action: #selector(likeButtonTappedAction), for: .touchUpInside)
-        likeButton.accessibilityIdentifier = "likeButtonTap"
+//        likeButton.accessibilityIdentifier = "likeButtonTap"
     }
 
     func configCell(isLike: Bool, date: String) {

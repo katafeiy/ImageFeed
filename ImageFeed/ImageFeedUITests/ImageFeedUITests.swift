@@ -17,25 +17,27 @@ final class ImageFeedUITests: XCTestCase {
         
         let webView = app.webViews["WebViewViewController"]
         
-        XCTAssert(webView.waitForExistence(timeout: 5))
+        XCTAssert(webView.waitForExistence(timeout: 8))
 //        sleep(3)
         
         let loginTextFiled = webView.descendants(matching: .textField).element
         
-        XCTAssert(loginTextFiled.waitForExistence(timeout: 5))
+        XCTAssert(loginTextFiled.waitForExistence(timeout: 8))
 //        sleep(3)
         
         loginTextFiled.tap()
         loginTextFiled.typeText("fkv.katafey@yandex.ru")
+        XCUIApplication().toolbars.buttons["Done"].tap()
         webView.swipeUp()
         
         let passwordTextFiled = webView.descendants(matching: .secureTextField).element
         
-        XCTAssert(passwordTextFiled.waitForExistence(timeout: 5))
+        XCTAssert(passwordTextFiled.waitForExistence(timeout: 8))
 //        sleep(3)
         
         passwordTextFiled.tap()
         passwordTextFiled.typeText("Filippov_82")
+        XCUIApplication().toolbars.buttons["Done"].tap()
         webView.swipeUp()
         
         webView.buttons["Login"].tap()
@@ -43,10 +45,10 @@ final class ImageFeedUITests: XCTestCase {
         let tablesQuery = app.tables
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         
-        XCTAssertTrue(cell.waitForExistence(timeout: 5))
+        XCTAssertTrue(cell.waitForExistence(timeout: 10))
 //        sleep(3)
         
-        print(app.debugDescription)
+//        print(app.debugDescription)
     }
     
     func testImagesList() throws {
@@ -59,13 +61,13 @@ final class ImageFeedUITests: XCTestCase {
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
         
-//        cellToLike.buttons["offActive"].tap()
-        cellToLike.buttons["likeButtonTap"].tap()
+        cellToLike.buttons["offActive"].tap()
+//        cellToLike.buttons["likeButtonTap"].tap()
         
         sleep(3)
                 
-//        cellToLike.buttons["onActive"].tap()
-        cellToLike.buttons["likeButtonTap"].tap()
+        cellToLike.buttons["offActive"].tap()
+//        cellToLike.buttons["likeButtonTap"].tap()
         
         sleep(3)
         
