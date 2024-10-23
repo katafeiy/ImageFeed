@@ -26,7 +26,7 @@ final class ImageFeedUITests: XCTestCase {
 //        sleep(3)
         
         loginTextFiled.tap()
-        loginTextFiled.typeText("fkv.katafey@yandex.ru")
+        loginTextFiled.typeText("")
         XCUIApplication().toolbars.buttons["Done"].tap()
         webView.swipeUp()
         
@@ -36,7 +36,7 @@ final class ImageFeedUITests: XCTestCase {
 //        sleep(3)
         
         passwordTextFiled.tap()
-        passwordTextFiled.typeText("Filippov_82")
+        passwordTextFiled.typeText("")
         XCUIApplication().toolbars.buttons["Done"].tap()
         webView.swipeUp()
         
