@@ -166,7 +166,9 @@ extension ProfileViewController: ProfileViewPresenterProtocol {
             alert.dismiss(animated: true)
         }
         alert.addAction(action)
+        action.accessibilityIdentifier = "yesAction"
         alert.addAction(cancel)
+        alert.view.accessibilityIdentifier = "ByeByeAlert!"
         present(alert, animated: true)
     }
 }

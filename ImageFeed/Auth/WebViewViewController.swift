@@ -18,6 +18,7 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
         super.viewDidLoad()
         
         webView.navigationDelegate = self
+        webView.accessibilityIdentifier = "WebViewViewController"
         presenter?.viewDidLoad()
         configProgressView()
         updateProgressObservation()
