@@ -6,7 +6,15 @@ protocol ProfileViewPresenterProtocol: AnyObject {
     func goToAuthViewController()
 }
 
-final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -> showAlert()
+protocol ProfileViewProtocol: AnyObject {
+    var delegate: ProfileViewPresenterProtocol? { get set }
+    func avatarURL() -> URL?
+    func didSelectLogoutButton()
+    func logout()
+    func eraseServises()
+}
+
+final class ProfileViewPresenter: ProfileViewProtocol { // Presenter -> delegate? -> ViewController -> showAlert()
     weak var delegate: ProfileViewPresenterProtocol?
     
     func avatarURL() -> URL? {
@@ -23,11 +31,16 @@ final class ProfileViewPresenter { // Presenter -> delegate? -> ViewController -
     
     func logout() {
         OAuth2TokenStorage.clear()
-        ProfileLogoutService.shared.erase()
-        ProfileService.shared.eraseProfile()
-        ProfileImageService.shared.eraseProfileImage()
-        ImagesListService.shared.eraseImageListService()
+        eraseServises()
         delegate?.goToAuthViewController()
         NotificationCenter.default.post(name: .init(rawValue: "removePhotoArrayObserver"), object: nil)
     }
+    
+    func eraseServises() {
+        ProfileService.shared.eraseProfile()
+        ProfileImageService.shared.eraseProfileImage()
+        ImagesListService.shared.eraseImageListService()
+        ProfileLogoutService.shared.erase()
+    }
+    
 }

@@ -3,8 +3,18 @@ import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
-    private let presenter = ProfileViewPresenter()
+    private let presenter: ProfileViewProtocol
     private var profileImageServiceObserver: NSObjectProtocol?
+    
+    init(presenter: ProfileViewProtocol) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+        self.presenter.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let avatarAccountImage: UIImageView = {
         let image = UIImageView()
@@ -22,6 +32,7 @@ final class ProfileViewController: UIViewController {
             target: self,
             action: #selector(didTapLogoutButton))
         button.tintColor = .ypRed
+        button.accessibilityIdentifier = "Logout"
         return button
     }()
     
@@ -60,8 +71,6 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        presenter.delegate = self
         configurationViews()
         
         guard let profile = ProfileService.shared.profile else { return }
@@ -130,6 +139,7 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewPresenterProtocol {
+    
     
     func goToAuthViewController() {
         guard let window = UIApplication.shared.windows.first else {
