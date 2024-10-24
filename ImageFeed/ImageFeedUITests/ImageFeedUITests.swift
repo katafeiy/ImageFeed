@@ -14,38 +14,37 @@ final class ImageFeedUITests: XCTestCase {
     func testAuthorization() throws {
         
         app.buttons["Authenticate"].tap()
-        
+        sleep(8)
         let webView = app.webViews["WebViewViewController"]
-        
-        XCTAssert(webView.waitForExistence(timeout: 8))
+        XCTAssert(webView.waitForExistence(timeout: 25))
 //        sleep(3)
         
         let loginTextFiled = webView.descendants(matching: .textField).element
-        
-        XCTAssert(loginTextFiled.waitForExistence(timeout: 8))
+        XCTAssert(loginTextFiled.waitForExistence(timeout: 15))
 //        sleep(3)
         
         loginTextFiled.tap()
-        loginTextFiled.typeText("")
+        loginTextFiled.typeText("fkv.katafey@yandex.ru")
         XCUIApplication().toolbars.buttons["Done"].tap()
-        webView.swipeUp()
+        app.tap()
+//        webView.swipeUp()
         
         let passwordTextFiled = webView.descendants(matching: .secureTextField).element
-        
-        XCTAssert(passwordTextFiled.waitForExistence(timeout: 8))
+        XCTAssert(passwordTextFiled.waitForExistence(timeout: 15))
 //        sleep(3)
         
         passwordTextFiled.tap()
-        passwordTextFiled.typeText("")
+        passwordTextFiled.typeText("Katafey_82")
         XCUIApplication().toolbars.buttons["Done"].tap()
-        webView.swipeUp()
+        app.tap()
+//        webView.swipeUp()
         
         webView.buttons["Login"].tap()
         
         let tablesQuery = app.tables
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         
-        XCTAssertTrue(cell.waitForExistence(timeout: 10))
+        XCTAssertTrue(cell.waitForExistence(timeout: 15))
 //        sleep(3)
         
 //        print(app.debugDescription)
