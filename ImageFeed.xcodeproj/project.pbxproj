@@ -196,7 +196,7 @@
 				1276105A2C5D07DE0003AB76 /* SceneDelegate.swift */,
 				1280A7722C9C9DCB00723279 /* NetworkError.swift */,
 				12E1892C2CC7F87200EA86F2 /* SupportServices */,
-				1278B6832C8AEAD4005E3B75 /* Extansion */,
+				1278B6832C8AEAD4005E3B75 /* Extensions */,
 				12E1892D2CC7F90000EA86F2 /* TabBar */,
 				12778C6B2C70A81100F3E646 /* SingleImageView */,
 				12874A972C81DD7F009787A7 /* Auth */,
@@ -221,13 +221,13 @@
 			path = SingleImageView;
 			sourceTree = "<group>";
 		};
-		1278B6832C8AEAD4005E3B75 /* Extansion */ = {
+		1278B6832C8AEAD4005E3B75 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				1278B6842C8AEB11005E3B75 /* URLSession+data.swift */,
 				1280A7702C9C34A100723279 /* URLRequest+Extansion.swift */,
 			);
-			path = Extansion;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1286C9D12C60304100DE4787 /* ImageList */ = {
