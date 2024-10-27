@@ -1,5 +1,13 @@
 import UIKit
 
+protocol ImagesListViewPresenterProtocol {
+    func viewDidLoad()
+    func paginateNextPage()
+    func updateLike(indexPath: IndexPath)
+    func dateString(_ date: Date) -> String
+    var photos: [Photo] { get }
+}
+
 final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     private let service: ImagesListServiceProtocol
     private(set) var photos: [Photo] = []
@@ -88,10 +96,3 @@ final class ImagesListViewPresenter: ImagesListViewPresenterProtocol {
     }
 }
 
-protocol ImagesListViewPresenterProtocol {
-    func viewDidLoad()
-    func paginateNextPage()
-    func updateLike(indexPath: IndexPath)
-    func dateString(_ date: Date) -> String
-    var photos: [Photo] { get }
-}

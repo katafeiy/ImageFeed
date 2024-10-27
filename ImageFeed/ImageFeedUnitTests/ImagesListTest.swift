@@ -41,8 +41,6 @@ final class ImagesListTest: XCTestCase {
         
         _ = viewController.view
         
-        viewController.viewDidLoad()
-        
         presenter.photos = []
         
         XCTAssertTrue(presenter.photos.isEmpty)

@@ -2,20 +2,15 @@ import UIKit
 import SwiftKeychainWrapper
 
 protocol ProfileViewPresenterProtocol: AnyObject {
-    func showAlert()
-    func goToAuthViewController()
-}
-
-protocol ProfileViewProtocol: AnyObject {
-    var delegate: ProfileViewPresenterProtocol? { get set }
+    var delegate: ProfileViewControllerProtocol? { get set }
     func avatarURL() -> URL?
     func didSelectLogoutButton()
     func logout()
     func eraseServises()
 }
 
-final class ProfileViewPresenter: ProfileViewProtocol { // Presenter -> delegate? -> ViewController -> showAlert()
-    weak var delegate: ProfileViewPresenterProtocol?
+final class ProfileViewPresenter: ProfileViewPresenterProtocol { // Presenter -> delegate? -> ViewController -> showAlert()
+    weak var delegate: ProfileViewControllerProtocol?
     
     func avatarURL() -> URL? {
         guard

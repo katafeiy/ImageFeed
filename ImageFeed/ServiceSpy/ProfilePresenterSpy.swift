@@ -1,11 +1,11 @@
 import Foundation
 
-final class ProfilePresenterSpy: ProfileViewProtocol {
+final class ProfilePresenterSpy: ProfileViewPresenterProtocol {
     var avatarURLCalled: Bool = false
     var eraseServicesCalled: Bool = false
     var logoutCalled: Bool = false
     
-    weak var delegate: ProfileViewPresenterProtocol?
+    weak var delegate: ProfileViewControllerProtocol?
     
     func avatarURL() -> URL? {
         avatarURLCalled = true

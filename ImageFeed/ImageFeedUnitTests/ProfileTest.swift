@@ -35,5 +35,4 @@ final class ProfileTest: XCTestCase {
         XCTAssertEqual(OAuth2TokenStorage.token, nil)
         
     }
-    
 }

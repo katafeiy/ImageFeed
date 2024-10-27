@@ -1,6 +1,12 @@
 import UIKit
 import Kingfisher
 
+protocol ImagesListViewControllerProtocol: AnyObject {
+    func reloadTableView()
+    func showBlockingProgressHUD()
+    func dismissBlockingProgressHUD()
+}
+
 final class ImagesListViewController: UIViewController, ImagesListViewControllerProtocol  {
     
     @IBOutlet private var tableView: UITableView!
@@ -118,11 +124,6 @@ extension ImagesListViewController: UITableViewDelegate {
     }
 }
 
-protocol ImagesListViewControllerProtocol: AnyObject {
-    func reloadTableView()
-    func showBlockingProgressHUD()
-    func dismissBlockingProgressHUD()
-}
 
 
 

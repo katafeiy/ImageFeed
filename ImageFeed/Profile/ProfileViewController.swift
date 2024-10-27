@@ -1,12 +1,17 @@
 import UIKit
 import Kingfisher
 
+protocol ProfileViewControllerProtocol: AnyObject {
+    func showAlert()
+    func goToAuthViewController()
+}
+
 final class ProfileViewController: UIViewController {
     
-    private let presenter: ProfileViewProtocol
+    private let presenter: ProfileViewPresenterProtocol
     private var profileImageServiceObserver: NSObjectProtocol?
     
-    init(presenter: ProfileViewProtocol) {
+    init(presenter: ProfileViewPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.delegate = self
@@ -138,7 +143,7 @@ final class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController: ProfileViewPresenterProtocol {
+extension ProfileViewController: ProfileViewControllerProtocol {
     
     
     func goToAuthViewController() {
