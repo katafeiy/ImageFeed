@@ -57,23 +57,23 @@ final class ImageFeedUITests: XCTestCase {
         let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
         cell.swipeUp()
         
-        sleep(3)
+        sleep(10)
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
         
-        cellToLike.buttons["offActive"].tap()
-//        cellToLike.buttons["likeButtonTap"].tap()
+//        cellToLike.buttons["offActive"].tap()
+        cellToLike.buttons["likeButtonTap"].tap()
         
-        sleep(3)
+        sleep(10)
                 
-        cellToLike.buttons["offActive"].tap()
-//        cellToLike.buttons["likeButtonTap"].tap()
+//        cellToLike.buttons["offActive"].tap()
+        cellToLike.buttons["likeButtonTap"].tap()
         
-        sleep(3)
+        sleep(10)
         
         cellToLike.tap()
         
-        sleep(3)
+        sleep(10)
         
         let image = app.scrollViews.images.element(boundBy: 0)
         image.pinch(withScale: 3, velocity: 1)
@@ -85,7 +85,7 @@ final class ImageFeedUITests: XCTestCase {
 
     func testProfile() throws {
         
-        sleep(3)
+        sleep(10)
         
         app.tabBars.buttons.element(boundBy: 1).tap()
         
